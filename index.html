@@ -352,6 +352,77 @@
   .contact-label { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); display: block; }
   .contact-val { font-size: .85rem; font-weight: 500; }
 
+  /* ── READING SECTION (NEW) ── */
+  .reading-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.6rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .read-card {
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  .read-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 0% 0%, rgba(0,229,255,0.03), transparent);
+    pointer-events: none;
+  }
+  .read-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px var(--card-glow);
+    border-color: rgba(0,229,255,0.3);
+  }
+  .read-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  .read-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--cyan);
+    letter-spacing: -0.2px;
+    margin-bottom: 0.2rem;
+  }
+  .read-sub {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    color: var(--purple);
+    letter-spacing: 0.5px;
+    margin-bottom: 0.8rem;
+  }
+  .read-desc {
+    font-size: 0.85rem;
+    color: #9aabc0;
+    line-height: 1.65;
+    flex: 1;
+  }
+  .read-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    background: var(--cyan-dim);
+    border-radius: 99px;
+    padding: 0.25rem 0.7rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--cyan);
+    margin-top: 1rem;
+    width: fit-content;
+    border: 1px solid rgba(0,229,255,0.2);
+  }
+  .read-badge span {
+    font-size: 0.85rem;
+  }
+
   /* ── FOOTER ── */
   footer {
     position: relative; z-index: 1; text-align: center;
@@ -391,6 +462,7 @@
     .avatar-ring { width: 200px; height: 200px; }
     #about .about-grid { grid-template-columns: 1fr; }
     .contact-grid { grid-template-columns: 1fr; }
+    .reading-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -406,6 +478,7 @@
     <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#skills">Skills</a></li>
+    <li><a href="#reading">Readings</a></li>
     <li><a href="#education">Education</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -541,7 +614,6 @@
     <div class="section-line"></div>
   </div>
   <div class="projects-grid">
-
     <div class="glass proj-card reveal">
       <div class="proj-top">
         <div class="proj-icon">💼</div>
@@ -649,98 +721,41 @@
     <div class="section-line"></div>
   </div>
   <div class="skills-wrap">
-
     <div class="skill-group reveal">
       <div class="skill-group-title">📱 Mobile Development</div>
       <div class="skill-chips">
-        <span class="chip">Flutter</span>
-        <span class="chip">Dart</span>
-        <span class="chip">Android (Java)</span>
-        <span class="chip">Kotlin (Basic)</span>
-        <span class="chip">iOS Deployment</span>
-        <span class="chip">Play Store Deployment</span>
+        <span class="chip">Flutter</span><span class="chip">Dart</span><span class="chip">Android (Java)</span>
+        <span class="chip">Kotlin (Basic)</span><span class="chip">iOS Deployment</span><span class="chip">Play Store Deployment</span>
       </div>
     </div>
-
     <div class="skill-group reveal">
       <div class="skill-group-title">⚙️ State Management</div>
-      <div class="skill-chips">
-        <span class="chip">GetX</span>
-        <span class="chip">Riverpod</span>
-        <span class="chip">BLoC</span>
-      </div>
+      <div class="skill-chips"><span class="chip">GetX</span><span class="chip">Riverpod</span><span class="chip">BLoC</span></div>
     </div>
-
     <div class="skill-group reveal">
       <div class="skill-group-title">🔗 Backend & APIs</div>
-      <div class="skill-chips">
-        <span class="chip">REST API Integration</span>
-        <span class="chip">Firebase Auth</span>
-        <span class="chip">Firebase Firestore</span>
-        <span class="chip">Firebase Cloud Messaging</span>
-        <span class="chip">Supabase</span>
-        <span class="chip">Dio</span>
-        <span class="chip">Http</span>
-      </div>
+      <div class="skill-chips"><span class="chip">REST API Integration</span><span class="chip">Firebase Auth</span><span class="chip">Firebase Firestore</span><span class="chip">Firebase Cloud Messaging</span><span class="chip">Supabase</span><span class="chip">Dio</span><span class="chip">Http</span></div>
     </div>
-
     <div class="skill-group reveal">
       <div class="skill-group-title">🗄️ Local Storage</div>
-      <div class="skill-chips">
-        <span class="chip">GetStorage</span>
-        <span class="chip">flutter_secure_storage</span>
-        <span class="chip">shared_preferences</span>
-        <span class="chip">SQLite</span>
-        <span class="chip">objectbox</span>
-      </div>
+      <div class="skill-chips"><span class="chip">GetStorage</span><span class="chip">flutter_secure_storage</span><span class="chip">shared_preferences</span><span class="chip">SQLite</span><span class="chip">objectbox</span></div>
     </div>
-
     <div class="skill-group reveal">
       <div class="skill-group-title">📦 Libraries & Tools</div>
-      <div class="skill-chips">
-        <span class="chip">flutter_screenutil</span>
-        <span class="chip">qr_flutter</span>
-        <span class="chip">google_maps_flutter</span>
-        <span class="chip">encrypt</span>
-        <span class="chip">socket_io_client</span>
-        <span class="chip">flutter_local_notifications</span>
-        <span class="chip">firebase_auth</span>
-        <span class="chip">cloud_firestore</span>
-        <span class="chip">firebase_messaging</span>
-        <span class="chip">firebase_storage</span>
-        <span class="chip">cached_network_image</span>
-        <span class="chip">url_launcher</span>
-        <span class="chip">permission_handler</span>
-
-        <span class="chip">Git</span>
-        <span class="chip">GitHub</span>
-      </div>
+      <div class="skill-chips"><span class="chip">flutter_screenutil</span><span class="chip">qr_flutter</span><span class="chip">google_maps_flutter</span><span class="chip">encrypt</span><span class="chip">socket_io_client</span><span class="chip">flutter_local_notifications</span><span class="chip">firebase_auth</span><span class="chip">cloud_firestore</span><span class="chip">firebase_messaging</span><span class="chip">firebase_storage</span><span class="chip">cached_network_image</span><span class="chip">url_launcher</span><span class="chip">permission_handler</span><span class="chip">Git</span><span class="chip">GitHub</span></div>
     </div>
-
     <div class="skill-group reveal">
       <div class="skill-group-title">🤖 AI & Emerging Tech</div>
-      <div class="skill-chips">
-        <span class="chip">Agentic AI Workflows</span>
-        <span class="chip">AI-assisted Development</span>
-        <span class="chip">Python (Basic)</span>
-      </div>
+      <div class="skill-chips"><span class="chip">Agentic AI Workflows</span><span class="chip">AI-assisted Development</span><span class="chip">Python (Basic)</span></div>
     </div>
-
     <div class="skill-group reveal">
-<div class="skill-group-title">💻 Programming Languages</div>
-<div class="skill-chips">
-<span class="chip">Dart</span>
-<span class="chip">Java</span>
-<span class="chip">Kotlin (Basic)</span>
-<span class="chip">Python (Basic)</span>
-<span class="chip">C</span>
-</div>
-</div>
-    
+      <div class="skill-group-title">💻 Programming Languages</div>
+      <div class="skill-chips"><span class="chip">Dart</span><span class="chip">Java</span><span class="chip">Kotlin (Basic)</span><span class="chip">Python (Basic)</span><span class="chip">C</span></div>
+    </div>
   </div>
 </section>
 
-  <!-- BOOKS / BLOGS I READ -->
+<!-- NEW SECTION: BOOKS / BLOGS I READ -->
 <section id="reading">
   <div class="section-header reveal">
     <div class="section-tag">Curious Mind</div>
@@ -838,31 +853,19 @@
       <div class="contact-grid">
         <a href="mailto:shaonx@proton.me" class="contact-item">
           <span class="contact-icon">✉️</span>
-          <div>
-            <span class="contact-label">Email</span>
-            <span class="contact-val">shaonx@proton.me</span>
-          </div>
+          <div><span class="contact-label">Email</span><span class="contact-val">shaonx@proton.me</span></div>
         </a>
         <a href="https://wa.me/8801617408676" target="_blank" class="contact-item">
           <span class="contact-icon">💬</span>
-          <div>
-            <span class="contact-label">WhatsApp</span>
-            <span class="contact-val">+88 01617 408676</span>
-          </div>
+          <div><span class="contact-label">WhatsApp</span><span class="contact-val">+88 01617 408676</span></div>
         </a>
         <a href="https://www.linkedin.com/in/sh4on" target="_blank" class="contact-item">
           <span class="contact-icon">🔗</span>
-          <div>
-            <span class="contact-label">LinkedIn</span>
-            <span class="contact-val">linkedin.com/in/sh4on</span>
-          </div>
+          <div><span class="contact-label">LinkedIn</span><span class="contact-val">linkedin.com/in/sh4on</span></div>
         </a>
         <a href="https://github.com/sh4on" target="_blank" class="contact-item">
           <span class="contact-icon">🐙</span>
-          <div>
-            <span class="contact-label">GitHub</span>
-            <span class="contact-val">github.com/sh4on</span>
-          </div>
+          <div><span class="contact-label">GitHub</span><span class="contact-val">github.com/sh4on</span></div>
         </a>
       </div>
     </div>
@@ -895,9 +898,9 @@
   reveals.forEach(r => obs.observe(r));
 
   // Staggered reveal for siblings
-  document.querySelectorAll('.about-grid, .projects-grid, .edu-grid, .skill-group').forEach(grid => {
+  document.querySelectorAll('.about-grid, .projects-grid, .reading-grid, .edu-grid, .skill-group').forEach(grid => {
     [...grid.querySelectorAll('.reveal')].forEach((el, i) => {
-      el.style.transitionDelay = (i * 0.1) + 's';
+      el.style.transitionDelay = (i * 0.08) + 's';
     });
   });
 </script>
