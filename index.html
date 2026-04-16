@@ -118,9 +118,9 @@
   .hero-name {
       font-family: 'Syne', sans-serif;
       font-size: clamp(2.8rem, 6vw, 5rem);
-      font-weight: 700; /* Slightly lighter */
-      line-height: 1.2; /* More vertical breathing room */
-      letter-spacing: 0.01em; /* Open up the characters */
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 0.01em;
       animation: fadeUp .7s .1s ease both;
   }
 
@@ -296,8 +296,6 @@
     background: var(--glass-bg); transition: all .2s;
   }
   .proj-link:hover { border-color: var(--cyan); color: var(--cyan); }
-  .proj-link.placeholder { opacity: .4; cursor: default; }
-  .proj-link.placeholder:hover { border-color: var(--glass-bd); color: var(--muted); }
   .proj-name { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: .4rem; }
   .proj-sub { font-size: .78rem; color: var(--purple); margin-bottom: .7rem; }
   .proj-desc { font-size: .83rem; color: #8090a0; line-height: 1.75; flex: 1; }
@@ -323,6 +321,57 @@
   }
   .chip:hover { border-color: var(--cyan); color: var(--cyan); background: var(--cyan-dim); }
 
+  /* ── HOBBIES SECTION ── */
+  .hobbies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.6rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .hobby-card {
+    padding: 1.6rem;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  .hobby-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px var(--card-glow);
+    border-color: rgba(0,229,255,0.3);
+  }
+  .hobby-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  .hobby-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--cyan);
+    margin-bottom: 0.75rem;
+  }
+  .hobby-desc {
+    font-size: 0.85rem;
+    color: #9aabc0;
+    line-height: 1.65;
+    flex: 1;
+    margin-bottom: 1rem;
+  }
+  .hobby-badge {
+    display: inline-block;
+    background: var(--purple-dim);
+    border-radius: 99px;
+    padding: 0.35rem 0.9rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--purple);
+    width: fit-content;
+    margin: 0 auto;
+    border: 1px solid rgba(159,108,255,0.2);
+  }
+
   /* ── EDUCATION ── */
   #education .edu-grid {
     display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -333,7 +382,6 @@
   .edu-degree { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: .25rem; }
   .edu-school { font-size: .85rem; color: var(--cyan); margin-bottom: .3rem; }
   .edu-period { font-size: .78rem; color: var(--muted); }
-  .edu-gpa { font-size: .82rem; color: var(--purple); margin-top: .4rem; }
 
   /* ── CONTACT ── */
   #contact .contact-inner { max-width: 700px; margin: 0 auto; }
@@ -352,7 +400,7 @@
   .contact-label { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); display: block; }
   .contact-val { font-size: .85rem; font-weight: 500; }
 
-  /* ── READING SECTION (NEW) ── */
+  /* ── READING SECTION ── */
   .reading-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -419,9 +467,6 @@
     width: fit-content;
     border: 1px solid rgba(0,229,255,0.2);
   }
-  .read-badge span {
-    font-size: 0.85rem;
-  }
 
   /* ── FOOTER ── */
   footer {
@@ -462,6 +507,7 @@
     .avatar-ring { width: 200px; height: 200px; }
     #about .about-grid { grid-template-columns: 1fr; }
     .contact-grid { grid-template-columns: 1fr; }
+    .hobbies-grid { grid-template-columns: 1fr; }
     .reading-grid { grid-template-columns: 1fr; }
   }
 </style>
@@ -478,6 +524,7 @@
     <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#skills">Skills</a></li>
+    <li><a href="#hobbies">Hobbies</a></li>
     <li><a href="#reading">Readings</a></li>
     <li><a href="#education">Education</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -759,6 +806,50 @@
   </div>
 </section>
 
+<!-- HOBBIES & INTERESTS -->
+<section id="hobbies">
+  <div class="section-header reveal">
+    <div class="section-tag">Beyond Code</div>
+    <h2 class="section-title">Hobbies & Interests</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="hobbies-grid">
+    
+    <!-- Reading Articles -->
+    <div class="glass hobby-card reveal">
+      <div class="hobby-icon">📰</div>
+      <div class="hobby-title">Daily Reading</div>
+      <div class="hobby-desc">I read articles every day on Medium.com to increase my knowledge and keep myself updated with the latest in tech, productivity, and beyond.</div>
+      <div class="hobby-badge">📚 Medium · Daily</div>
+    </div>
+
+    <!-- Travelling -->
+    <div class="glass hobby-card reveal">
+      <div class="hobby-icon">✈️</div>
+      <div class="hobby-title">Travelling</div>
+      <div class="hobby-desc">Exploring new places and experiencing diverse cultures. Been to Cox's Bazar, Sylhet, Sreemangal, Sitakundu, and more.</div>
+      <div class="hobby-badge">🌍 Wanderlust</div>
+    </div>
+
+    <!-- Movies -->
+    <div class="glass hobby-card reveal">
+      <div class="hobby-icon">🎬</div>
+      <div class="hobby-title">Movies</div>
+      <div class="hobby-desc">Love watching thought-provoking cinema. Favorites: The Prestige, 2001: A Space Odyssey, Interstellar, The Dark Knight.</div>
+      <div class="hobby-badge">🍿 Cinephile</div>
+    </div>
+
+    <!-- Playing Cards -->
+    <div class="glass hobby-card reveal">
+      <div class="hobby-icon">🃏</div>
+      <div class="hobby-title">Playing Cards</div>
+      <div class="hobby-desc">Enjoy friendly card games with family and friends — a great way to relax and connect.</div>
+      <div class="hobby-badge">♠️ ♥️ ♣️ ♦️</div>
+    </div>
+
+  </div>
+</section>
+
 <!-- NEW SECTION: BOOKS / BLOGS I READ -->
 <section id="reading">
   <div class="section-header reveal">
@@ -829,17 +920,14 @@
     <div class="glass edu-card reveal">
       <div class="edu-degree">B.Sc. Course</div>
       <div class="edu-school">Govt. Bangabandhu College</div>
-      <!-- <div class="edu-period">2015 – 2018</div> -->
     </div>
     <div class="glass edu-card reveal">
       <div class="edu-degree">HSC</div>
       <div class="edu-school">Sabira Rouf College</div>
-      <!-- <div class="edu-period">2013 – 2015</div> -->
     </div>
     <div class="glass edu-card reveal">
       <div class="edu-degree">SSC</div>
       <div class="edu-school">Angaria High School</div>
-    <!--   <div class="edu-period">2012</div> -->
     </div>
   </div>
 </section>
@@ -902,7 +990,7 @@
   reveals.forEach(r => obs.observe(r));
 
   // Staggered reveal for siblings
-  document.querySelectorAll('.about-grid, .projects-grid, .reading-grid, .edu-grid, .skill-group').forEach(grid => {
+  document.querySelectorAll('.about-grid, .projects-grid, .hobbies-grid, .reading-grid, .edu-grid, .skill-group').forEach(grid => {
     [...grid.querySelectorAll('.reveal')].forEach((el, i) => {
       el.style.transitionDelay = (i * 0.08) + 's';
     });
