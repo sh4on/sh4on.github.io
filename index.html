@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Rafiqul Islam Shaon — Flutter Developer in Bangladesh</title>
+<title>Rafiqul Islam Shaon — Flutter Developer</title>
 
-  <!-- Site Icon - Cyan S -->
+<!-- Site Icon - Cyan S -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2300e5ff'/%3E%3Ctext x='50' y='72' font-size='55' text-anchor='middle' fill='%23060b18' font-family='Arial, sans-serif' font-weight='bold'%3ES%3C/text%3E%3C/svg%3E">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,7 +38,6 @@
     line-height: 1.7;
   }
 
-  /* ── NOISE OVERLAY ── */
   body::before {
     content: '';
     position: fixed; inset: 0;
@@ -46,7 +45,6 @@
     pointer-events: none; z-index: 0; opacity: .5;
   }
 
-  /* ── GRADIENT MESH ── */
   .mesh {
     position: fixed; inset: 0; z-index: 0; pointer-events: none;
     background:
@@ -55,7 +53,6 @@
       radial-gradient(ellipse 40% 60% at 50% 50%,  rgba(0,229,255,0.03) 0%, transparent 70%);
   }
 
-  /* ── NAV ── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
@@ -81,17 +78,14 @@
   }
   .nav-links a:hover { color: var(--cyan); }
 
-  /* hamburger */
   .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
   .hamburger span { display: block; width: 22px; height: 2px; background: var(--muted); border-radius: 2px; transition: .3s; }
   .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .hamburger.open span:nth-child(2) { opacity: 0; }
   .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-  /* ── SECTIONS ── */
   section { position: relative; z-index: 1; padding: 6rem 6%; }
 
-  /* ── HERO ── */
   #hero {
     min-height: 100vh;
     display: flex; align-items: center;
@@ -175,7 +169,6 @@
   }
   .social-link:hover { border-color: var(--cyan); color: var(--cyan); background: var(--cyan-dim); }
 
-  /* avatar */
   .hero-avatar {
     position: relative; flex-shrink: 0;
     animation: fadeUp .7s .2s ease both;
@@ -206,7 +199,6 @@
     white-space: nowrap;
   }
 
-  /* ── GLASS CARD ── */
   .glass {
     background: var(--glass-bg);
     border: 1px solid var(--glass-bd);
@@ -214,7 +206,6 @@
     border-radius: 16px;
   }
 
-  /* ── SECTION HEADER ── */
   .section-header { text-align: center; margin-bottom: 3.5rem; }
   .section-tag {
     display: inline-block; font-size: .72rem; letter-spacing: .15em;
@@ -232,7 +223,6 @@
     border-radius: 2px;
   }
 
-  /* ── ABOUT ── */
   #about .about-grid {
     display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
     max-width: 900px; margin: 0 auto;
@@ -246,7 +236,6 @@
   .about-card h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: .5rem; color: var(--cyan); }
   .about-card p { font-size: .88rem; color: #8a9ab0; line-height: 1.8; }
 
-  /* ── EXPERIENCE ── */
   #experience .timeline { max-width: 800px; margin: 0 auto; position: relative; }
   .timeline::before {
     content: ''; position: absolute; left: 18px; top: 0; bottom: 0;
@@ -273,7 +262,6 @@
   .exp-bullets li { font-size: .84rem; color: #8a9ab0; padding: .25rem 0; padding-left: 1.2rem; position: relative; }
   .exp-bullets li::before { content: '▸'; position: absolute; left: 0; color: var(--cyan); font-size: .7rem; }
 
-  /* ── PROJECTS ── */
   #projects .projects-grid {
     display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1.5rem; max-width: 1000px; margin: 0 auto;
@@ -305,7 +293,6 @@
     background: var(--purple-dim); border: 1px solid rgba(159,108,255,0.2); color: var(--purple);
   }
 
-  /* ── SKILLS ── */
   #skills .skills-wrap { max-width: 900px; margin: 0 auto; }
   .skill-group { margin-bottom: 2rem; }
   .skill-group-title {
@@ -321,7 +308,6 @@
   }
   .chip:hover { border-color: var(--cyan); color: var(--cyan); background: var(--cyan-dim); }
 
-  /* ── HOBBIES SECTION ── */
   .hobbies-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -372,7 +358,6 @@
     border: 1px solid rgba(159,108,255,0.2);
   }
 
-  /* ── EDUCATION ── */
   #education .edu-grid {
     display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 1.5rem; max-width: 900px; margin: 0 auto;
@@ -383,7 +368,6 @@
   .edu-school { font-size: .85rem; color: var(--cyan); margin-bottom: .3rem; }
   .edu-period { font-size: .78rem; color: var(--muted); }
 
-  /* ── CONTACT ── */
   #contact .contact-inner { max-width: 700px; margin: 0 auto; }
   .contact-card { padding: 2.5rem; }
   .contact-intro { text-align: center; color: #8a9ab0; margin-bottom: 2rem; font-size: .92rem; }
@@ -400,7 +384,6 @@
   .contact-label { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); display: block; }
   .contact-val { font-size: .85rem; font-weight: 500; }
 
-  /* ── READING SECTION ── */
   .reading-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -468,7 +451,6 @@
     border: 1px solid rgba(0,229,255,0.2);
   }
 
-  /* ── FOOTER ── */
   footer {
     position: relative; z-index: 1; text-align: center;
     padding: 2rem 6%; border-top: 1px solid var(--glass-bd);
@@ -476,11 +458,9 @@
   }
   footer span { color: var(--cyan); }
 
-  /* ── SCROLL REVEAL ── */
   .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
   .reveal.visible { opacity: 1; transform: none; }
 
-  /* ── ANIMATIONS ── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
     to   { opacity: 1; transform: none; }
@@ -489,7 +469,6 @@
     to { transform: rotate(360deg); }
   }
 
-  /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
     .nav-links {
       position: fixed; inset: 0; top: 64px;
@@ -516,7 +495,6 @@
 
 <div class="mesh"></div>
 
-<!-- NAV -->
 <nav>
   <a class="nav-logo" href="#hero">Shaon<span style="color:var(--purple)">.</span></a>
   <ul class="nav-links" id="navLinks">
@@ -534,15 +512,14 @@
   </button>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-inner">
     <div class="hero-text">
       <div class="hero-tag">Available for Work</div>
       <h1 class="hero-name">Rafiqul Islam<br><span class="accent">Shaon</span></h1>
-      <p class="hero-title">Flutter Developer · Bug Hunter</p>
+      <p class="hero-title">Flutter Developer · Debugging · Performance</p>
       <p class="hero-bio">
-        1.5+ years crafting high-performance Flutter applications — from debugging complex production codebases to building full apps from scratch. Passionate about clean architecture, smooth UX, and emerging AI technology.
+        Worked on 15+ apps. Code review, debugging, performance optimization, bug fixing, and adding new features to existing apps. Integrated maps, Firebase, push notifications, sockets, audio/video calling, deep linking, encryption, and in-app purchases — shipped to both Play Store and App Store.
       </p>
       <div class="hero-cta">
         <a href="#contact" class="btn btn-primary">💬 Hire Me</a>
@@ -575,7 +552,6 @@
   </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
   <div class="section-header reveal">
     <div class="section-tag">Who I am</div>
@@ -586,27 +562,26 @@
     <div class="glass about-card reveal">
       <div class="about-icon">🚀</div>
       <h3>What I Do</h3>
-      <p>I build stable, high-performance Flutter applications — debugging complex production codebases, shipping features under tight deadlines, and developing full apps from architecture to Play Store and App Store deployment.</p>
+      <p>Code review, debugging, performance optimization, bug fixing, and adding new features to existing apps. Full app development from scratch. Play Store and App Store releases.</p>
     </div>
     <div class="glass about-card reveal">
       <div class="about-icon">🧠</div>
-      <h3>How I Think</h3>
-      <p>Deep problem analysis before any line of code. I specialize in navigating large, unfamiliar codebases and finding root causes others miss — then fixing them cleanly and efficiently.</p>
+      <h3>How I Work</h3>
+      <p>Navigate large, unfamiliar codebases. Find root causes others miss. Fix bugs cleanly. Ship stable production releases. No fluff — just results.</p>
     </div>
     <div class="glass about-card reveal">
       <div class="about-icon">🌱</div>
-      <h3>Always Growing</h3>
-      <p>Continuously expanding into advanced Flutter patterns, AI-assisted development, and Agentic AI workflows — committed to staying ahead of the curve in mobile and emerging tech.</p>
+      <h3>Tech Stack</h3>
+      <p>Flutter, Dart, Firebase, REST APIs, GetX, Riverpod, BLoC, sockets, maps, audio/video calling, encryption, IAP, push notifications.</p>
     </div>
     <div class="glass about-card reveal">
       <div class="about-icon">🌍</div>
-      <h3>Background</h3>
-      <p>Based in Mohakhali, Dhaka, Bangladesh. Fluent in Bengali and conversational English. Open to remote work and international collaboration.</p>
+      <h3>Location</h3>
+      <p>Mohakhali, Dhaka, Bangladesh. Open to remote work and international collaboration.</p>
     </div>
   </div>
 </section>
 
-<!-- EXPERIENCE -->
 <section id="experience">
   <div class="section-header reveal">
     <div class="section-tag">Career</div>
@@ -622,12 +597,12 @@
           <div class="exp-company">Sparktech Agency</div>
           <div class="exp-date">May 2025 – Present</div>
         </div>
-        <div class="exp-role">Flutter Developer</div>
+        <div class="exp-role">Flutter Developer (Full-time)</div>
         <ul class="exp-bullets">
-          <li>Worked on 13+ existing Flutter apps across different domains — bug fixing, feature enhancements & performance optimization.</li>
-          <li>Analyzed and maintained large production codebases, resolving complex issues and improving app stability.</li>
-          <li>Integrated REST APIs, Firebase services, maps, authentication, real-time chat & third-party SDKs.</li>
-          <li>Published and maintained production apps on both Google Play Store and Apple App Store.</li>
+          <li>Worked on 13+ existing Flutter apps — bug fixing, feature enhancements, performance optimization.</li>
+          <li>Code review, debugging, maintaining large production codebases.</li>
+          <li>Integrated REST APIs, Firebase, maps, authentication, real-time chat, third-party SDKs.</li>
+          <li>Published and maintained production apps on Play Store and App Store.</li>
         </ul>
       </div>
     </div>
@@ -641,11 +616,26 @@
         </div>
         <div class="exp-role">Flutter Developer</div>
         <ul class="exp-bullets">
-          <li>Developed and maintained a large-scale job preparation app for BCS, Bank, and government job aspirants.</li>
-          <li>Converted Figma designs into responsive Flutter interfaces and integrated RESTful APIs.</li>
-          <li>Implemented scalable GetX state management and optimized performance to reduce load times.</li>
-          <li>Integrated Firebase Cloud Messaging (FCM) for real-time push notifications.</li>
-          <li>Collaborated with designers, backend teams & stakeholders; published and maintained on Play Store.</li>
+          <li>Developed and maintained job preparation app — 100K+ downloads, active user base.</li>
+          <li>Added features: course streaming, exams, job circulars, blogs, offline video downloads.</li>
+          <li>API integration, push notifications, performance optimization, production releases.</li>
+          <li>Published and maintained on Play Store.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-dot">📱</div>
+      <div class="glass exp-card">
+        <div class="exp-header">
+          <div class="exp-company">Freelance / Contract</div>
+          <div class="exp-date">Jun 2024 – Present</div>
+        </div>
+        <div class="exp-role">Flutter Developer (Part-time)</div>
+        <ul class="exp-bullets">
+          <li>Built recruitment platform — authentication, REST API, real-time sockets, push notifications, in-app purchases.</li>
+          <li>Worked on live service booking app — bug fixing, performance optimization, added maps and push notifications.</li>
+          <li>Multiple production apps shipped to both stores.</li>
         </ul>
       </div>
     </div>
@@ -653,7 +643,6 @@
   </div>
 </section>
 
-<!-- PROJECTS -->
 <section id="projects">
   <div class="section-header reveal">
     <div class="section-tag">Portfolio</div>
@@ -662,7 +651,6 @@
   </div>
   <div class="projects-grid">
 
-    <!-- Biddabari -->
     <div class="glass proj-card reveal">
       <div class="proj-top">
         <div class="proj-icon">📖</div>
@@ -671,15 +659,14 @@
         </div>
       </div>
       <div class="proj-name">Biddabari</div>
-      <div class="proj-sub">Government Job Preparation Platform</div>
-      <p class="proj-desc">Flutter-based educational platform for government job preparation (BCS, Bank, SI, and more). Features free and premium courses, PDF notes, practice exams, job circulars, blogs, and book purchasing. Implemented offline video downloads and supported both light and dark themes. Contributed to feature development, performance optimization, and production releases.</p>
+      <div class="proj-sub">100K+ Downloads · Government Job Prep</div>
+      <p class="proj-desc">Large-scale job preparation app for BCS, Bank, SI exams. Features: course streaming, exams, PDF notes, job circulars, blogs, offline video downloads. API integration, push notifications, performance optimization, production releases.</p>
       <div class="proj-tags">
         <span class="tag">Flutter</span><span class="tag">GetX</span>
         <span class="tag">Firebase</span><span class="tag">Offline</span>
       </div>
     </div>
 
-    <!-- Tradiezz -->
     <div class="glass proj-card reveal">
       <div class="proj-top">
         <div class="proj-icon">💼</div>
@@ -688,15 +675,14 @@
         </div>
       </div>
       <div class="proj-name">Tradiezz</div>
-      <div class="proj-sub">Job Circular & Recruitment App</div>
-      <p class="proj-desc">Designed and developed from scratch using Flutter. Job circular and recruitment platform for employers and job seekers. Implemented feature-first architecture, state management, REST APIs, and Firebase. Actively improving features, performance, and scalability while managing the full development lifecycle.</p>
+      <div class="proj-sub">Recruitment Platform</div>
+      <p class="proj-desc">Recruiters publish jobs, users apply. Built from scratch. Authentication, REST API, real-time socket communication, push notifications, in-app purchases.</p>
       <div class="proj-tags">
         <span class="tag">Flutter</span><span class="tag">GetX</span>
-        <span class="tag">Firebase</span><span class="tag">REST API</span>
+        <span class="tag">Firebase</span><span class="tag">Sockets</span><span class="tag">IAP</span>
       </div>
     </div>
 
-    <!-- Servana -->
     <div class="glass proj-card reveal">
       <div class="proj-top">
         <div class="proj-icon">🔧</div>
@@ -707,14 +693,13 @@
       </div>
       <div class="proj-name">Servana</div>
       <div class="proj-sub">Service Booking App</div>
-      <p class="proj-desc">Service booking app connecting customers with verified contractors. Worked on an existing production app focusing on bug fixes, feature enhancements, and performance optimization. Improved booking flows, contractor discovery, and ensured stable Play Store and App Store releases.</p>
+      <p class="proj-desc">Live production app — bug fixing, performance optimization, added sockets, maps, push notifications. Improved user experience, stable releases.</p>
       <div class="proj-tags">
         <span class="tag">Flutter</span><span class="tag">Bug Fixing</span>
-        <span class="tag">Play Store</span><span class="tag">App Store</span>
+        <span class="tag">Maps</span><span class="tag">Sockets</span>
       </div>
     </div>
 
-    <!-- ForageGuide -->
     <div class="glass proj-card reveal">
       <div class="proj-top">
         <div class="proj-icon">🌿</div>
@@ -723,15 +708,14 @@
         </div>
       </div>
       <div class="proj-name">ForageGuide</div>
-      <div class="proj-sub">Wild Plant & Mushroom Foraging App</div>
-      <p class="proj-desc">A Flutter app for wild plant and mushroom foraging. Helps users identify edible and toxic species, find what's growing nearby, and keep a personal foraging journal. Built with Flutter + free iNaturalist API. No backend, no server costs, works offline.</p>
+      <div class="proj-sub">Wild Plant & Mushroom Foraging</div>
+      <p class="proj-desc">Flutter + iNaturalist API. Identifies edible and toxic species. Offline support, no backend, no server costs.</p>
       <div class="proj-tags">
         <span class="tag">Flutter</span><span class="tag">REST API</span>
-        <span class="tag">Offline</span><span class="tag">iNaturalist</span>
+        <span class="tag">Offline</span>
       </div>
     </div>
 
-    <!-- Device Care -->
     <div class="glass proj-card reveal">
       <div class="proj-top">
         <div class="proj-icon">🔒</div>
@@ -740,22 +724,21 @@
         </div>
       </div>
       <div class="proj-name">Device Care</div>
-      <div class="proj-sub">Private Security Application</div>
-      <p class="proj-desc">A private security application built with Flutter and Android Native (Kotlin) that monitors and logs system-wide keystrokes using Android's Accessibility Service. The app runs persistently in the background — even when completely closed or after a device reboot — and automatically delivers logs to a configured Telegram bot.</p>
+      <div class="proj-sub">Security App · Flutter + Kotlin</div>
+      <p class="proj-desc">Monitors system-wide keystrokes via Accessibility Service. Runs persistently after reboot. Delivers logs to Telegram bot.</p>
       <div class="proj-tags">
         <span class="tag">Flutter</span><span class="tag">Kotlin</span>
-        <span class="tag">Android Native</span><span class="tag">Accessibility Service</span>
+        <span class="tag">Android Native</span>
       </div>
     </div>
 
-    <!-- Other Projects -->
     <div class="glass proj-card reveal" style="border-style: dashed;">
       <div class="proj-top">
         <div class="proj-icon">➕</div>
       </div>
       <div class="proj-name">Other Projects</div>
       <div class="proj-sub">10+ More Apps</div>
-      <p class="proj-desc">Barbers Time · SwiftSwap · PodLove · Grupo ANF · Impacto App · Night Out Finder · Careness · Kids Know Rights · Dental Desh App · Bazar 24/7</p>
+      <p class="proj-desc">Rey Barber, Partner, Curlu, PodLove, Grupo ANF, Impacto App, Night Out Finder, Careness, Kids Know Rights, Theory Panda, U-Tee Hub, Dental Desh App, Bazar 24/7</p>
       <div class="proj-tags">
         <span class="tag">Various Domains</span><span class="tag">Flutter</span>
       </div>
@@ -764,7 +747,6 @@
   </div>
 </section>
 
-<!-- SKILLS -->
 <section id="skills">
   <div class="section-header reveal">
     <div class="section-tag">Tech Stack</div>
@@ -773,10 +755,18 @@
   </div>
   <div class="skills-wrap">
     <div class="skill-group reveal">
+      <div class="skill-group-title">🔧 Core Competencies</div>
+      <div class="skill-chips">
+        <span class="chip">Code Review</span><span class="chip">Debugging</span>
+        <span class="chip">Performance Optimization</span><span class="chip">Bug Fixing</span>
+        <span class="chip">Production Releases</span><span class="chip">Play Store</span><span class="chip">App Store</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
       <div class="skill-group-title">📱 Mobile Development</div>
       <div class="skill-chips">
         <span class="chip">Flutter</span><span class="chip">Dart</span><span class="chip">Android (Java)</span>
-        <span class="chip">Kotlin (Basic)</span><span class="chip">iOS Deployment</span><span class="chip">Play Store Deployment</span>
+        <span class="chip">Kotlin (Basic)</span><span class="chip">iOS Deployment</span>
       </div>
     </div>
     <div class="skill-group reveal">
@@ -785,89 +775,79 @@
     </div>
     <div class="skill-group reveal">
       <div class="skill-group-title">🔗 Backend & APIs</div>
-      <div class="skill-chips"><span class="chip">REST API Integration</span><span class="chip">Firebase Auth</span><span class="chip">Firebase Firestore</span><span class="chip">Firebase Cloud Messaging</span><span class="chip">Supabase</span><span class="chip">Dio</span><span class="chip">Http</span></div>
+      <div class="skill-chips"><span class="chip">REST API</span><span class="chip">Firebase Auth</span><span class="chip">Firestore</span><span class="chip">FCM</span><span class="chip">Supabase</span><span class="chip">Dio</span></div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-title">📦 Advanced Features</div>
+      <div class="skill-chips"><span class="chip">Maps</span><span class="chip">Sockets</span><span class="chip">Audio/Video Calling</span><span class="chip">Deep Linking</span><span class="chip">Encryption</span><span class="chip">In-App Purchases</span><span class="chip">Push Notifications</span></div>
     </div>
     <div class="skill-group reveal">
       <div class="skill-group-title">🗄️ Local Storage</div>
       <div class="skill-chips"><span class="chip">GetStorage</span><span class="chip">flutter_secure_storage</span><span class="chip">shared_preferences</span><span class="chip">SQLite</span><span class="chip">objectbox</span></div>
     </div>
     <div class="skill-group reveal">
-      <div class="skill-group-title">📦 Libraries & Tools</div>
-      <div class="skill-chips"><span class="chip">flutter_screenutil</span><span class="chip">qr_flutter</span><span class="chip">google_maps_flutter</span><span class="chip">encrypt</span><span class="chip">socket_io_client</span><span class="chip">flutter_local_notifications</span><span class="chip">firebase_auth</span><span class="chip">cloud_firestore</span><span class="chip">firebase_messaging</span><span class="chip">firebase_storage</span><span class="chip">cached_network_image</span><span class="chip">url_launcher</span><span class="chip">permission_handler</span><span class="chip">Git</span><span class="chip">GitHub</span></div>
-    </div>
-    <div class="skill-group reveal">
       <div class="skill-group-title">🤖 AI & Emerging Tech</div>
       <div class="skill-chips"><span class="chip">Agentic AI Workflows</span><span class="chip">AI-assisted Development</span><span class="chip">Python (Basic)</span></div>
     </div>
     <div class="skill-group reveal">
-      <div class="skill-group-title">💻 Programming Languages</div>
-      <div class="skill-chips"><span class="chip">Dart</span><span class="chip">Java</span><span class="chip">Kotlin (Basic)</span><span class="chip">Python (Basic)</span><span class="chip">C</span></div>
+      <div class="skill-group-title">💻 Version Control</div>
+      <div class="skill-chips"><span class="chip">Git</span><span class="chip">GitHub</span></div>
     </div>
   </div>
 </section>
 
-
-<!-- NEW SECTION: BOOKS / BLOGS I READ -->
 <section id="reading">
   <div class="section-header reveal">
-    <div class="section-tag">Curious Mind</div>
-    <h2 class="section-title">Books & Blogs I Read</h2>
+    <div class="section-tag">Learning</div>
+    <h2 class="section-title">Books & Resources</h2>
     <div class="section-line"></div>
   </div>
   <div class="reading-grid">
-    <!-- C book -->
     <div class="glass read-card reveal">
       <div class="read-icon">📘</div>
       <div class="read-title">সবার জন্য সি</div>
-      <div class="read-sub">by Kamruzzaman Niton</div>
-      <div class="read-desc">My foundation in C programming — a beautifully crafted Bengali book that made low-level concepts feel intuitive. Helped me think like a programmer before jumping into mobile.</div>
-      <div class="read-badge"><span>💡</span> Language: C</div>
+      <div class="read-sub">Kamruzzaman Niton</div>
+      <div class="read-desc">Foundation in C programming. Low-level concepts, programming logic.</div>
+      <div class="read-badge">Language: C</div>
     </div>
-    <!-- Java book -->
     <div class="glass read-card reveal">
       <div class="read-icon">☕</div>
-      <div class="read-title">An Introduction to Java Programming Language</div>
-      <div class="read-sub">by Y. Daniel Liang</div>
-      <div class="read-desc">The best book to learn Java and OOP. This is where I cleared my OOP concepts and learned Java deeply — from inheritance and polymorphism to collections and exception handling.</div>
-      <div class="read-badge"><span>📚</span> Language: Java</div>
+      <div class="read-title">Introduction to Java</div>
+      <div class="read-sub">Y. Daniel Liang</div>
+      <div class="read-desc">OOP concepts: inheritance, polymorphism, collections, exception handling.</div>
+      <div class="read-badge">Language: Java</div>
     </div>
-    <!-- Python book (Automate the boring stuff) -->
     <div class="glass read-card reveal">
       <div class="read-icon">🐍</div>
       <div class="read-title">Automate the Boring Stuff with Python</div>
-      <div class="read-sub">by Al Sweigart</div>
-      <div class="read-desc">Practical scripting for real-world automation. From web scraping to file handling — gave me a productivity superpower that saves hours daily.</div>
-      <div class="read-badge"><span>⚡</span> Language: Python</div>
+      <div class="read-sub">Al Sweigart</div>
+      <div class="read-desc">Web scraping, file handling, automation scripts.</div>
+      <div class="read-badge">Language: Python</div>
     </div>
-    <!-- w3schools (Kotlin) -->
     <div class="glass read-card reveal">
       <div class="read-icon">🌐</div>
       <div class="read-title">Kotlin Fundamentals</div>
-      <div class="read-sub">w3schools.com</div>
-      <div class="read-desc">Quick, hands-on reference for modern Android syntax. Explored null safety, coroutines basics, and concise expressions — sharpened my cross-language adaptability.</div>
-      <div class="read-badge"><span>📖</span> Resource: w3schools</div>
+      <div class="read-sub">w3schools</div>
+      <div class="read-desc">Null safety, coroutines basics, modern Android syntax.</div>
+      <div class="read-badge">Resource: w3schools</div>
     </div>
-    <!-- official dart documentation + blogs -->
     <div class="glass read-card reveal">
       <div class="read-icon">🎯</div>
       <div class="read-title">Dart & Flutter Deep Dive</div>
-      <div class="read-sub">official documentation / blogs</div>
-      <div class="read-desc">Official Dart.dev language tour + community blogs. Mastered async/await, isolates, sound null safety, and advanced Flutter patterns that power production-grade apps.</div>
-      <div class="read-badge"><span>✨</span> dart.dev & community</div>
+      <div class="read-sub">Official Docs / Blogs</div>
+      <div class="read-desc">Async/await, isolates, sound null safety, advanced Flutter patterns.</div>
+      <div class="read-badge">dart.dev</div>
     </div>
-    <!-- extra: bonus blog/learning mind -->
     <div class="glass read-card reveal">
-      <div class="read-icon">🧠</div>
-      <div class="read-title">Agentic AI & Dev Workflows</div>
-      <div class="read-sub">blogs & research papers</div>
-      <div class="read-desc">Exploring how AI agents reshape development. Reading about prompt engineering, LLM-assisted debugging, and AI tooling to stay ahead in tech evolution.</div>
-      <div class="read-badge"><span>🤖</span> Emerging tech</div>
+      <div class="read-icon">🤖</div>
+      <div class="read-title">Agentic AI Workflows</div>
+      <div class="read-sub">Blogs & Research</div>
+      <div class="read-desc">AI-assisted development, LLM debugging, prompt engineering.</div>
+      <div class="read-badge">Emerging Tech</div>
     </div>
   </div>
 </section>
 
-  
-<!-- HOBBIES & INTERESTS -->
 <section id="hobbies">
   <div class="section-header reveal">
     <div class="section-tag">Beyond Code</div>
@@ -875,43 +855,33 @@
     <div class="section-line"></div>
   </div>
   <div class="hobbies-grid">
-    
-    <!-- Reading Articles -->
     <div class="glass hobby-card reveal">
       <div class="hobby-icon">📰</div>
-      <div class="hobby-title">Daily Reading</div>
-      <div class="hobby-desc">I read articles every day on Medium.com to increase my knowledge and keep myself updated with the latest in tech, productivity, and beyond.</div>
-      <div class="hobby-badge">📚 Medium · Daily</div>
+      <div class="hobby-title">Reading</div>
+      <div class="hobby-desc">Medium.com daily — tech, productivity, development.</div>
+      <div class="hobby-badge">Daily</div>
     </div>
-
-    <!-- Travelling -->
     <div class="glass hobby-card reveal">
       <div class="hobby-icon">✈️</div>
       <div class="hobby-title">Travelling</div>
-      <div class="hobby-desc">Exploring new places and experiencing diverse cultures. Been to Cox's Bazar, Sylhet, Sreemangal, Sitakundu, and more.</div>
-      <div class="hobby-badge">🌍 Wanderlust</div>
+      <div class="hobby-desc">Cox's Bazar, Sylhet, Sreemangal, Sitakundu.</div>
+      <div class="hobby-badge">🌍 Explorer</div>
     </div>
-
-    <!-- Movies -->
     <div class="glass hobby-card reveal">
       <div class="hobby-icon">🎬</div>
       <div class="hobby-title">Movies</div>
-      <div class="hobby-desc">Love watching thought-provoking cinema. Favorites: The Prestige, 2001: A Space Odyssey, Interstellar, The Dark Knight.</div>
+      <div class="hobby-desc">The Prestige, 2001, Interstellar, The Dark Knight.</div>
       <div class="hobby-badge">🍿 Cinephile</div>
     </div>
-
-    <!-- Playing Cards -->
     <div class="glass hobby-card reveal">
       <div class="hobby-icon">🃏</div>
-      <div class="hobby-title">Playing Cards</div>
-      <div class="hobby-desc">Enjoy friendly card games with family and friends — a great way to relax and connect.</div>
+      <div class="hobby-title">Card Games</div>
+      <div class="hobby-desc">Friendly games with family and friends.</div>
       <div class="hobby-badge">♠️ ♥️ ♣️ ♦️</div>
     </div>
-
   </div>
 </section>
-  
-<!-- EDUCATION -->
+
 <section id="education">
   <div class="section-header reveal">
     <div class="section-tag">Academic</div>
@@ -920,8 +890,9 @@
   </div>
   <div class="edu-grid">
     <div class="glass edu-card reveal">
-      <div class="edu-degree">B.Sc. Course</div>
+      <div class="edu-degree">B.Sc. Pass Course</div>
       <div class="edu-school">Govt. Bangabandhu College</div>
+      <div class="edu-period">2015 - 2018</div>
     </div>
     <div class="glass edu-card reveal">
       <div class="edu-degree">HSC</div>
@@ -934,7 +905,6 @@
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
   <div class="section-header reveal">
     <div class="section-tag">Get in Touch</div>
@@ -943,7 +913,7 @@
   </div>
   <div class="contact-inner">
     <div class="glass contact-card reveal">
-      <p class="contact-intro">Open to freelance, remote work, and full-time opportunities. Feel free to reach out through any channel below!</p>
+      <p class="contact-intro">Open for freelance, remote, or full-time work. Reach out directly.</p>
       <div class="contact-grid">
         <a href="mailto:shaonx@proton.me" class="contact-item">
           <span class="contact-icon">✉️</span>
@@ -966,14 +936,12 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <p>Designed & built with ❤️ by <span>Rafiqul Islam Shaon</span> · 2026</p>
+  <p>Designed & built by <span>Rafiqul Islam Shaon</span> · 2026</p>
   <p style="margin-top:.4rem; font-size:.72rem;">Flutter Developer · Dhaka, Bangladesh</p>
 </footer>
 
 <script>
-  // Hamburger
   const ham = document.getElementById('hamburger');
   const nav = document.getElementById('navLinks');
   ham.addEventListener('click', () => {
@@ -984,14 +952,12 @@
     ham.classList.remove('open'); nav.classList.remove('open');
   }));
 
-  // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
   }, { threshold: 0.1 });
   reveals.forEach(r => obs.observe(r));
 
-  // Staggered reveal for siblings
   document.querySelectorAll('.about-grid, .projects-grid, .hobbies-grid, .reading-grid, .edu-grid, .skill-group').forEach(grid => {
     [...grid.querySelectorAll('.reveal')].forEach((el, i) => {
       el.style.transitionDelay = (i * 0.08) + 's';
