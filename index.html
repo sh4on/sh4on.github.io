@@ -1,1016 +1,1597 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Rafiqul Islam Shaon — Flutter Developer | Code Review & Performance Optimization</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rafiqul Islam Shaon — Flutter Developer | Code Review & Performance Optimization</title>
   <!-- Site Icon - Cyan S -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2300e5ff'/%3E%3Ctext x='50' y='72' font-size='55' text-anchor='middle' fill='%23060b18' font-family='Arial, sans-serif' font-weight='bold'%3ES%3C/text%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2300e5ff'/%3E%3Ctext x='50' y='72' font-size='55' text-anchor='middle' fill='%23060b18' font-family='Arial, sans-serif' font-weight='bold'%3ES%3C/text%3E%3C/svg%3E">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg:        #060b18;
-    --bg2:       #0c1428;
-    --cyan:      #00e5ff;
-    --cyan-dim:  rgba(0,229,255,0.15);
-    --purple:    #9f6cff;
-    --purple-dim:rgba(159,108,255,0.12);
-    --glass-bg:  rgba(255,255,255,0.04);
-    --glass-bd:  rgba(255,255,255,0.08);
-    --text:      #e8edf5;
-    --muted:     #7a8ba0;
-    --card-glow: rgba(0,229,255,0.07);
-  }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #060b18;
+      --bg2: #0c1428;
+      --cyan: #00e5ff;
+      --cyan-dim: rgba(0, 229, 255, 0.15);
+      --purple: #9f6cff;
+      --purple-dim: rgba(159, 108, 255, 0.12);
+      --glass-bg: rgba(255, 255, 255, 0.04);
+      --glass-bd: rgba(255, 255, 255, 0.08);
+      --text: #e8edf5;
+      --muted: #7a8ba0;
+      --card-glow: rgba(0, 229, 255, 0.07);
+    }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    overflow-x: hidden;
-    line-height: 1.7;
-  }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
 
-  /* ── NOISE OVERLAY ── */
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none; z-index: 0; opacity: .5;
-  }
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: .5;
+    }
 
-  /* ── GRADIENT MESH ── */
-  .mesh {
-    position: fixed; inset: 0; z-index: 0; pointer-events: none;
-    background:
-      radial-gradient(ellipse 60% 50% at 80% 10%,  rgba(0,229,255,0.08) 0%, transparent 60%),
-      radial-gradient(ellipse 50% 40% at 10% 80%,  rgba(159,108,255,0.1) 0%, transparent 60%),
-      radial-gradient(ellipse 40% 60% at 50% 50%,  rgba(0,229,255,0.03) 0%, transparent 70%);
-  }
+    /* ── GRADIENT MESH ── */
+    .mesh {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 60% 50% at 80% 10%, rgba(0, 229, 255, 0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 10% 80%, rgba(159, 108, 255, 0.1) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 60% at 50% 50%, rgba(0, 229, 255, 0.03) 0%, transparent 70%);
+    }
 
-  /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1.1rem 6%;
-    background: rgba(6,11,24,0.75);
-    backdrop-filter: blur(18px);
-    border-bottom: 1px solid var(--glass-bd);
-  }
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 6%;
+      background: rgba(6, 11, 24, 0.75);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--glass-bd);
+    }
 
-  .nav-logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800; font-size: 1.1rem;
-    color: var(--cyan);
-    letter-spacing: -.02em;
-    text-decoration: none;
-  }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--cyan);
+      letter-spacing: -.02em;
+      text-decoration: none;
+    }
 
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a {
-    color: var(--muted); font-size: .85rem; text-decoration: none;
-    letter-spacing: .06em; text-transform: uppercase;
-    transition: color .25s;
-  }
-  .nav-links a:hover { color: var(--cyan); }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
 
-  /* hamburger */
-  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
-  .hamburger span { display: block; width: 22px; height: 2px; background: var(--muted); border-radius: 2px; transition: .3s; }
-  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  .hamburger.open span:nth-child(2) { opacity: 0; }
-  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .nav-links a {
+      color: var(--muted);
+      font-size: .85rem;
+      text-decoration: none;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      transition: color .25s;
+    }
 
-  /* ── SECTIONS ── */
-  section { position: relative; z-index: 1; padding: 6rem 6%; }
+    .nav-links a:hover {
+      color: var(--cyan);
+    }
 
-  /* ── HERO ── */
-  #hero {
-    min-height: 100vh;
-    display: flex; align-items: center;
-    padding-top: 8rem;
-  }
+    /* hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
 
-  .hero-inner {
-    display: flex; align-items: center; gap: 5rem;
-    max-width: 1100px; margin: 0 auto; width: 100%;
-  }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--muted);
+      border-radius: 2px;
+      transition: .3s;
+    }
 
-  .hero-text { flex: 1; }
+    .hamburger.open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
 
-  .hero-tag {
-    display: inline-flex; align-items: center; gap: .5rem;
-    background: var(--cyan-dim); border: 1px solid rgba(0,229,255,0.2);
-    color: var(--cyan); font-size: .78rem; letter-spacing: .1em;
-    text-transform: uppercase; padding: .35rem .85rem; border-radius: 99px;
-    margin-bottom: 1.5rem;
-    animation: fadeUp .7s ease both;
-  }
-  .hero-tag::before { content: '●'; font-size: .5rem; }
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
 
-  .hero-name {
+    .hamburger.open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 6rem 6%;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 8rem;
+    }
+
+    .hero-inner {
+      display: flex;
+      align-items: center;
+      gap: 5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero-text {
+      flex: 1;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--cyan-dim);
+      border: 1px solid rgba(0, 229, 255, 0.2);
+      color: var(--cyan);
+      font-size: .78rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .35rem .85rem;
+      border-radius: 99px;
+      margin-bottom: 1.5rem;
+      animation: fadeUp .7s ease both;
+    }
+
+    .hero-tag::before {
+      content: '●';
+      font-size: .5rem;
+    }
+
+    .hero-name {
       font-family: 'Syne', sans-serif;
       font-size: clamp(2.8rem, 6vw, 5rem);
       font-weight: 700;
       line-height: 1.2;
       letter-spacing: 0.01em;
       animation: fadeUp .7s .1s ease both;
-  }
-
-  .hero-name .accent { color: var(--cyan); }
-
-  .hero-title {
-    font-size: clamp(1rem, 2vw, 1.25rem);
-    color: var(--muted); margin: 1rem 0 1.5rem;
-    font-weight: 300; letter-spacing: .02em;
-    animation: fadeUp .7s .2s ease both;
-  }
-
-  .hero-bio {
-    max-width: 520px; color: #a0b0c5; line-height: 1.8;
-    animation: fadeUp .7s .3s ease both;
-  }
-
-  .hero-cta {
-    display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.5rem;
-    animation: fadeUp .7s .4s ease both;
-  }
-
-  .btn {
-    display: inline-flex; align-items: center; gap: .5rem;
-    padding: .75rem 1.6rem; border-radius: 8px;
-    font-family: 'DM Sans', sans-serif; font-size: .9rem; font-weight: 500;
-    cursor: pointer; text-decoration: none; transition: all .25s;
-  }
-  .btn-primary {
-    background: var(--cyan); color: #060b18;
-    border: 1px solid var(--cyan);
-  }
-  .btn-primary:hover { background: transparent; color: var(--cyan); }
-  .btn-outline {
-    background: transparent; color: var(--text);
-    border: 1px solid var(--glass-bd);
-    backdrop-filter: blur(8px);
-  }
-  .btn-outline:hover { border-color: var(--cyan); color: var(--cyan); }
-
-  .hero-socials {
-    display: flex; gap: 1rem; margin-top: 2rem;
-    animation: fadeUp .7s .5s ease both;
-  }
-  .social-link {
-    width: 40px; height: 40px; border-radius: 8px;
-    border: 1px solid var(--glass-bd);
-    background: var(--glass-bg);
-    display: flex; align-items: center; justify-content: center;
-    color: var(--muted); text-decoration: none; font-size: 1rem;
-    backdrop-filter: blur(8px); transition: all .25s;
-  }
-  .social-link:hover { border-color: var(--cyan); color: var(--cyan); background: var(--cyan-dim); }
-
-  /* avatar */
-  .hero-avatar {
-    position: relative; flex-shrink: 0;
-    animation: fadeUp .7s .2s ease both;
-  }
-  .avatar-ring {
-    width: 280px; height: 280px; border-radius: 50%;
-    border: 2px solid rgba(0,229,255,0.3);
-    padding: 6px; position: relative;
-  }
-  .avatar-ring::before {
-    content: '';
-    position: absolute; inset: -12px; border-radius: 50%;
-    border: 1px dashed rgba(0,229,255,0.15);
-    animation: spin 20s linear infinite;
-  }
-  .avatar-img {
-    width: 100%; height: 100%; border-radius: 50%;
-    background: linear-gradient(135deg, #1a2540, #0d1a30);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 5rem; overflow: hidden;
-  }
-  .avatar-img svg { width: 60%; height: 60%; opacity: .5; }
-  .avatar-badge {
-    position: absolute; bottom: 10px; right: -10px;
-    background: var(--glass-bg); border: 1px solid var(--glass-bd);
-    backdrop-filter: blur(12px); border-radius: 10px;
-    padding: .5rem .9rem; font-size: .78rem; color: var(--cyan);
-    white-space: nowrap;
-  }
-
-  /* ── GLASS CARD ── */
-  .glass {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-bd);
-    backdrop-filter: blur(16px);
-    border-radius: 16px;
-  }
-
-  /* ── SECTION HEADER ── */
-  .section-header { text-align: center; margin-bottom: 3.5rem; }
-  .section-tag {
-    display: inline-block; font-size: .72rem; letter-spacing: .15em;
-    text-transform: uppercase; color: var(--cyan);
-    margin-bottom: .6rem;
-  }
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-    font-weight: 700; letter-spacing: -.03em;
-  }
-  .section-line {
-    width: 48px; height: 3px; margin: .8rem auto 0;
-    background: linear-gradient(90deg, var(--cyan), var(--purple));
-    border-radius: 2px;
-  }
-
-  /* ── ABOUT ── */
-  #about .about-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
-    max-width: 900px; margin: 0 auto;
-  }
-  .about-card {
-    padding: 2rem;
-    transition: transform .3s, box-shadow .3s;
-  }
-  .about-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px var(--card-glow); }
-  .about-icon { font-size: 1.8rem; margin-bottom: .8rem; }
-  .about-card h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: .5rem; color: var(--cyan); }
-  .about-card p { font-size: .88rem; color: #8a9ab0; line-height: 1.8; }
-
-  /* ── EXPERIENCE ── */
-  #experience .timeline { max-width: 800px; margin: 0 auto; position: relative; }
-  .timeline::before {
-    content: ''; position: absolute; left: 18px; top: 0; bottom: 0;
-    width: 1px; background: linear-gradient(to bottom, var(--cyan), var(--purple), transparent);
-  }
-
-  .timeline-item { display: flex; gap: 2rem; margin-bottom: 2rem; }
-  .timeline-dot {
-    flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%;
-    background: var(--bg2); border: 2px solid var(--cyan);
-    display: flex; align-items: center; justify-content: center;
-    font-size: .7rem; color: var(--cyan); position: relative; z-index: 1;
-  }
-  .exp-card {
-    flex: 1; padding: 1.5rem 1.8rem;
-    transition: transform .3s, box-shadow .3s;
-  }
-  .exp-card:hover { transform: translateX(6px); box-shadow: 0 8px 32px var(--card-glow); }
-  .exp-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: .5rem; margin-bottom: .5rem; }
-  .exp-company { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; }
-  .exp-date { font-size: .78rem; color: var(--cyan); background: var(--cyan-dim); padding: .2rem .7rem; border-radius: 99px; white-space: nowrap; }
-  .exp-role { font-size: .88rem; color: var(--purple); margin-bottom: .8rem; font-weight: 500; }
-  .exp-bullets { list-style: none; }
-  .exp-bullets li { font-size: .84rem; color: #8a9ab0; padding: .25rem 0; padding-left: 1.2rem; position: relative; }
-  .exp-bullets li::before { content: '▸'; position: absolute; left: 0; color: var(--cyan); font-size: .7rem; }
-
-  /* ── PROJECTS ── */
-  #projects .projects-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem; max-width: 1000px; margin: 0 auto;
-  }
-  .proj-card {
-    padding: 1.6rem; transition: transform .3s, box-shadow .3s;
-    display: flex; flex-direction: column;
-  }
-  .proj-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px var(--card-glow); }
-  .proj-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1rem; }
-  .proj-icon {
-    width: 48px; height: 48px; border-radius: 12px;
-    background: var(--cyan-dim); display: flex; align-items: center; justify-content: center;
-    font-size: 1.4rem; border: 1px solid rgba(0,229,255,0.2);
-  }
-  .proj-links { display: flex; gap: .5rem; }
-  .proj-link {
-    font-size: .72rem; padding: .25rem .6rem; border-radius: 6px;
-    text-decoration: none; border: 1px solid var(--glass-bd); color: var(--muted);
-    background: var(--glass-bg); transition: all .2s;
-  }
-  .proj-link:hover { border-color: var(--cyan); color: var(--cyan); }
-  .proj-name { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: .4rem; }
-  .proj-sub { font-size: .78rem; color: var(--purple); margin-bottom: .7rem; }
-  .proj-desc { font-size: .83rem; color: #8090a0; line-height: 1.75; flex: 1; }
-  .proj-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1rem; }
-  .tag {
-    font-size: .7rem; padding: .2rem .6rem; border-radius: 99px;
-    background: var(--purple-dim); border: 1px solid rgba(159,108,255,0.2); color: var(--purple);
-  }
-
-  /* ── SKILLS ── */
-  #skills .skills-wrap { max-width: 900px; margin: 0 auto; }
-  .skill-group { margin-bottom: 2rem; }
-  .skill-group-title {
-    font-family: 'Syne', sans-serif; font-size: .85rem; font-weight: 700;
-    letter-spacing: .1em; text-transform: uppercase; color: var(--cyan);
-    margin-bottom: 1rem; padding-left: .2rem;
-  }
-  .skill-chips { display: flex; flex-wrap: wrap; gap: .6rem; }
-  .chip {
-    font-size: .82rem; padding: .4rem 1rem; border-radius: 8px;
-    background: var(--glass-bg); border: 1px solid var(--glass-bd);
-    color: var(--text); backdrop-filter: blur(8px); transition: all .2s;
-  }
-  .chip:hover { border-color: var(--cyan); color: var(--cyan); background: var(--cyan-dim); }
-
-  /* ── HOBBIES SECTION ── */
-  .hobbies-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 1.6rem;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-  .hobby-card {
-    padding: 1.6rem;
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-  }
-  .hobby-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 40px var(--card-glow);
-    border-color: rgba(0,229,255,0.3);
-  }
-  .hobby-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
-  .hobby-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--cyan);
-    margin-bottom: 0.75rem;
-  }
-  .hobby-desc {
-    font-size: 0.85rem;
-    color: #9aabc0;
-    line-height: 1.65;
-    flex: 1;
-    margin-bottom: 1rem;
-  }
-  .hobby-badge {
-    display: inline-block;
-    background: var(--purple-dim);
-    border-radius: 99px;
-    padding: 0.35rem 0.9rem;
-    font-size: 0.7rem;
-    font-weight: 500;
-    color: var(--purple);
-    width: fit-content;
-    margin: 0 auto;
-    border: 1px solid rgba(159,108,255,0.2);
-  }
-
-  /* ── EDUCATION ── */
-  #education .edu-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 1.5rem; max-width: 900px; margin: 0 auto;
-  }
-  .edu-card { padding: 1.6rem; transition: transform .3s; }
-  .edu-card:hover { transform: translateY(-4px); }
-  .edu-degree { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: .25rem; }
-  .edu-school { font-size: .85rem; color: var(--cyan); margin-bottom: .3rem; }
-  .edu-period { font-size: .78rem; color: var(--muted); }
-
-  /* ── CONTACT ── */
-  #contact .contact-inner { max-width: 700px; margin: 0 auto; }
-  .contact-card { padding: 2.5rem; }
-  .contact-intro { text-align: center; color: #8a9ab0; margin-bottom: 2rem; font-size: .92rem; }
-  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-  .contact-item {
-    display: flex; align-items: center; gap: .8rem;
-    padding: 1rem 1.2rem; border-radius: 10px;
-    background: rgba(255,255,255,0.03); border: 1px solid var(--glass-bd);
-    text-decoration: none; color: var(--text);
-    transition: all .25s;
-  }
-  .contact-item:hover { border-color: var(--cyan); background: var(--cyan-dim); color: var(--cyan); }
-  .contact-icon { font-size: 1.2rem; flex-shrink: 0; }
-  .contact-label { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); display: block; }
-  .contact-val { font-size: .85rem; font-weight: 500; }
-
-  /* ── READING SECTION ── */
-  .reading-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.6rem;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-  .read-card {
-    padding: 1.5rem;
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    overflow: hidden;
-  }
-  .read-card::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 0% 0%, rgba(0,229,255,0.03), transparent);
-    pointer-events: none;
-  }
-  .read-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 40px var(--card-glow);
-    border-color: rgba(0,229,255,0.3);
-  }
-  .read-icon {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-  }
-  .read-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--cyan);
-    letter-spacing: -0.2px;
-    margin-bottom: 0.2rem;
-  }
-  .read-sub {
-    font-size: 0.72rem;
-    text-transform: uppercase;
-    color: var(--purple);
-    letter-spacing: 0.5px;
-    margin-bottom: 0.8rem;
-  }
-  .read-desc {
-    font-size: 0.85rem;
-    color: #9aabc0;
-    line-height: 1.65;
-    flex: 1;
-  }
-  .read-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    background: var(--cyan-dim);
-    border-radius: 99px;
-    padding: 0.25rem 0.7rem;
-    font-size: 0.7rem;
-    font-weight: 500;
-    color: var(--cyan);
-    margin-top: 1rem;
-    width: fit-content;
-    border: 1px solid rgba(0,229,255,0.2);
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    position: relative; z-index: 1; text-align: center;
-    padding: 2rem 6%; border-top: 1px solid var(--glass-bd);
-    font-size: .8rem; color: var(--muted);
-  }
-  footer span { color: var(--cyan); }
-
-  /* ── SCROLL REVEAL ── */
-  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
-  .reveal.visible { opacity: 1; transform: none; }
-
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: none; }
-  }
-  @keyframes spin {
-    to { transform: rotate(360deg); }
-  }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 768px) {
-    .nav-links {
-      position: fixed; inset: 0; top: 64px;
-      flex-direction: column; align-items: center; justify-content: center;
-      background: rgba(6,11,24,.97); backdrop-filter: blur(20px);
-      gap: 2.5rem; font-size: 1.1rem;
-      transform: translateX(100%); transition: transform .35s;
-      z-index: 99;
     }
-    .nav-links.open { transform: none; }
-    .hamburger { display: flex; }
-    .hero-inner { flex-direction: column-reverse; gap: 2.5rem; text-align: center; }
-    .hero-cta { justify-content: center; }
-    .hero-socials { justify-content: center; }
-    .avatar-ring { width: 200px; height: 200px; }
-    #about .about-grid { grid-template-columns: 1fr; }
-    .contact-grid { grid-template-columns: 1fr; }
-    .hobbies-grid { grid-template-columns: 1fr; }
-    .reading-grid { grid-template-columns: 1fr; }
-  }
-</style>
+
+    .hero-name .accent {
+      color: var(--cyan);
+    }
+
+    .hero-title {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--muted);
+      margin: 1rem 0 1.5rem;
+      font-weight: 300;
+      letter-spacing: .02em;
+      animation: fadeUp .7s .2s ease both;
+    }
+
+    .hero-bio {
+      max-width: 520px;
+      color: #a0b0c5;
+      line-height: 1.8;
+      animation: fadeUp .7s .3s ease both;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2.5rem;
+      animation: fadeUp .7s .4s ease both;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .75rem 1.6rem;
+      border-radius: 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .9rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all .25s;
+    }
+
+    .btn-primary {
+      background: var(--cyan);
+      color: #060b18;
+      border: 1px solid var(--cyan);
+    }
+
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--cyan);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--glass-bd);
+      backdrop-filter: blur(8px);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+
+    .hero-socials {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      animation: fadeUp .7s .5s ease both;
+    }
+
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      border: 1px solid var(--glass-bd);
+      background: var(--glass-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 1rem;
+      backdrop-filter: blur(8px);
+      transition: all .25s;
+    }
+
+    .social-link:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+      background: var(--cyan-dim);
+    }
+
+    /* avatar */
+    .hero-avatar {
+      position: relative;
+      flex-shrink: 0;
+      animation: fadeUp .7s .2s ease both;
+    }
+
+    .avatar-ring {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      border: 2px solid rgba(0, 229, 255, 0.3);
+      padding: 6px;
+      position: relative;
+    }
+
+    .avatar-ring::before {
+      content: '';
+      position: absolute;
+      inset: -12px;
+      border-radius: 50%;
+      border: 1px dashed rgba(0, 229, 255, 0.15);
+      animation: spin 20s linear infinite;
+    }
+
+    .avatar-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1a2540, #0d1a30);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      overflow: hidden;
+    }
+
+    .avatar-img svg {
+      width: 60%;
+      height: 60%;
+      opacity: .5;
+    }
+
+    .avatar-badge {
+      position: absolute;
+      bottom: 10px;
+      right: -10px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-bd);
+      backdrop-filter: blur(12px);
+      border-radius: 10px;
+      padding: .5rem .9rem;
+      font-size: .78rem;
+      color: var(--cyan);
+      white-space: nowrap;
+    }
+
+    /* ── GLASS CARD ── */
+    .glass {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-bd);
+      backdrop-filter: blur(16px);
+      border-radius: 16px;
+    }
+
+    /* ── SECTION HEADER ── */
+    .section-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-size: .72rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: .6rem;
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 700;
+      letter-spacing: -.03em;
+    }
+
+    .section-line {
+      width: 48px;
+      height: 3px;
+      margin: .8rem auto 0;
+      background: linear-gradient(90deg, var(--cyan), var(--purple));
+      border-radius: 2px;
+    }
+
+    /* ── ABOUT ── */
+    #about .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .about-card {
+      padding: 2rem;
+      transition: transform .3s, box-shadow .3s;
+    }
+
+    .about-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px var(--card-glow);
+    }
+
+    .about-icon {
+      font-size: 1.8rem;
+      margin-bottom: .8rem;
+    }
+
+    .about-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: .5rem;
+      color: var(--cyan);
+    }
+
+    .about-card p {
+      font-size: .88rem;
+      color: #8a9ab0;
+      line-height: 1.8;
+    }
+
+    /* ── EXPERIENCE ── */
+    #experience .timeline {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 18px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--cyan), var(--purple), transparent);
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .timeline-dot {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--bg2);
+      border: 2px solid var(--cyan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .7rem;
+      color: var(--cyan);
+      position: relative;
+      z-index: 1;
+    }
+
+    .exp-card {
+      flex: 1;
+      padding: 1.5rem 1.8rem;
+      transition: transform .3s, box-shadow .3s;
+    }
+
+    .exp-card:hover {
+      transform: translateX(6px);
+      box-shadow: 0 8px 32px var(--card-glow);
+    }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-bottom: .5rem;
+    }
+
+    .exp-company {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .exp-date {
+      font-size: .78rem;
+      color: var(--cyan);
+      background: var(--cyan-dim);
+      padding: .2rem .7rem;
+      border-radius: 99px;
+      white-space: nowrap;
+    }
+
+    .exp-role {
+      font-size: .88rem;
+      color: var(--purple);
+      margin-bottom: .8rem;
+      font-weight: 500;
+    }
+
+    .exp-bullets {
+      list-style: none;
+    }
+
+    .exp-bullets li {
+      font-size: .84rem;
+      color: #8a9ab0;
+      padding: .25rem 0;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+
+    .exp-bullets li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--cyan);
+      font-size: .7rem;
+    }
+
+    /* ── PROJECTS ── */
+    #projects .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .proj-card {
+      padding: 1.6rem;
+      transition: transform .3s, box-shadow .3s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .proj-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px var(--card-glow);
+    }
+
+    .proj-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .proj-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--cyan-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      border: 1px solid rgba(0, 229, 255, 0.2);
+    }
+
+    .proj-links {
+      display: flex;
+      gap: .5rem;
+    }
+
+    .proj-link {
+      font-size: .72rem;
+      padding: .25rem .6rem;
+      border-radius: 6px;
+      text-decoration: none;
+      border: 1px solid var(--glass-bd);
+      color: var(--muted);
+      background: var(--glass-bg);
+      transition: all .2s;
+    }
+
+    .proj-link:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+
+    .proj-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: .4rem;
+    }
+
+    .proj-sub {
+      font-size: .78rem;
+      color: var(--purple);
+      margin-bottom: .7rem;
+    }
+
+    .proj-desc {
+      font-size: .83rem;
+      color: #8090a0;
+      line-height: 1.75;
+      flex: 1;
+    }
+
+    .proj-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      margin-top: 1rem;
+    }
+
+    .tag {
+      font-size: .7rem;
+      padding: .2rem .6rem;
+      border-radius: 99px;
+      background: var(--purple-dim);
+      border: 1px solid rgba(159, 108, 255, 0.2);
+      color: var(--purple);
+    }
+
+    /* ── SKILLS ── */
+    #skills .skills-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .skill-group {
+      margin-bottom: 2rem;
+    }
+
+    .skill-group-title {
+      font-family: 'Syne', sans-serif;
+      font-size: .85rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 1rem;
+      padding-left: .2rem;
+    }
+
+    .skill-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .6rem;
+    }
+
+    .chip {
+      font-size: .82rem;
+      padding: .4rem 1rem;
+      border-radius: 8px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-bd);
+      color: var(--text);
+      backdrop-filter: blur(8px);
+      transition: all .2s;
+    }
+
+    .chip:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+      background: var(--cyan-dim);
+    }
+
+    /* ── HOBBIES SECTION ── */
+    .hobbies-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.6rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .hobby-card {
+      padding: 1.6rem;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .hobby-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px var(--card-glow);
+      border-color: rgba(0, 229, 255, 0.3);
+    }
+
+    .hobby-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .hobby-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--cyan);
+      margin-bottom: 0.75rem;
+    }
+
+    .hobby-desc {
+      font-size: 0.85rem;
+      color: #9aabc0;
+      line-height: 1.65;
+      flex: 1;
+      margin-bottom: 1rem;
+    }
+
+    .hobby-badge {
+      display: inline-block;
+      background: var(--purple-dim);
+      border-radius: 99px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--purple);
+      width: fit-content;
+      margin: 0 auto;
+      border: 1px solid rgba(159, 108, 255, 0.2);
+    }
+
+    /* ── EDUCATION ── */
+    #education .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .edu-card {
+      padding: 1.6rem;
+      transition: transform .3s;
+    }
+
+    .edu-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .edu-degree {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: .25rem;
+    }
+
+    .edu-school {
+      font-size: .85rem;
+      color: var(--cyan);
+      margin-bottom: .3rem;
+    }
+
+    .edu-period {
+      font-size: .78rem;
+      color: var(--muted);
+    }
+
+    /* ── CONTACT ── */
+    #contact .contact-inner {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .contact-card {
+      padding: 2.5rem;
+    }
+
+    .contact-intro {
+      text-align: center;
+      color: #8a9ab0;
+      margin-bottom: 2rem;
+      font-size: .92rem;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      padding: 1rem 1.2rem;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--glass-bd);
+      text-decoration: none;
+      color: var(--text);
+      transition: all .25s;
+    }
+
+    .contact-item:hover {
+      border-color: var(--cyan);
+      background: var(--cyan-dim);
+      color: var(--cyan);
+    }
+
+    .contact-icon {
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .contact-label {
+      font-size: .72rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+      display: block;
+    }
+
+    .contact-val {
+      font-size: .85rem;
+      font-weight: 500;
+    }
+
+    /* ── READING SECTION ── */
+    .reading-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.6rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .read-card {
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .read-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 0% 0%, rgba(0, 229, 255, 0.03), transparent);
+      pointer-events: none;
+    }
+
+    .read-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px var(--card-glow);
+      border-color: rgba(0, 229, 255, 0.3);
+    }
+
+    .read-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .read-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--cyan);
+      letter-spacing: -0.2px;
+      margin-bottom: 0.2rem;
+    }
+
+    .read-sub {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      color: var(--purple);
+      letter-spacing: 0.5px;
+      margin-bottom: 0.8rem;
+    }
+
+    .read-desc {
+      font-size: 0.85rem;
+      color: #9aabc0;
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .read-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: var(--cyan-dim);
+      border-radius: 99px;
+      padding: 0.25rem 0.7rem;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--cyan);
+      margin-top: 1rem;
+      width: fit-content;
+      border: 1px solid rgba(0, 229, 255, 0.2);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 2rem 6%;
+      border-top: 1px solid var(--glass-bd);
+      font-size: .8rem;
+      color: var(--muted);
+    }
+
+    footer span {
+      color: var(--cyan);
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        inset: 0;
+        top: 64px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: rgba(6, 11, 24, .97);
+        backdrop-filter: blur(20px);
+        gap: 2.5rem;
+        font-size: 1.1rem;
+        transform: translateX(100%);
+        transition: transform .35s;
+        z-index: 99;
+      }
+
+      .nav-links.open {
+        transform: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .hero-inner {
+        flex-direction: column-reverse;
+        gap: 2.5rem;
+        text-align: center;
+      }
+
+      .hero-cta {
+        justify-content: center;
+      }
+
+      .hero-socials {
+        justify-content: center;
+      }
+
+      .avatar-ring {
+        width: 200px;
+        height: 200px;
+      }
+
+      #about .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hobbies-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .reading-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<div class="mesh"></div>
+  <div class="mesh"></div>
 
-<!-- NAV -->
-<nav>
-  <a class="nav-logo" href="#hero">Shaon<span style="color:var(--purple)">.</span></a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#about">About</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#hobbies">Hobbies</a></li>
-    <li><a href="#reading">Readings</a></li>
-    <li><a href="#education">Education</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <button class="hamburger" id="hamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#hero">Shaon<span style="color:var(--purple)">.</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#hobbies">Hobbies</a></li>
+      <li><a href="#reading">Readings</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-inner">
-    <div class="hero-text">
-      <div class="hero-tag">Available for Work</div>
-      <h1 class="hero-name">Rafiqul Islam<br><span class="accent">Shaon</span></h1>
-     <p class="hero-title">Flutter Developer · Code Reviewer · Problem Solver</p>
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-tag">Available for Work</div>
+        <h1 class="hero-name">Rafiqul Islam<br><span class="accent">Shaon</span></h1>
+        <p class="hero-title">Flutter Developer · Code Reviewer · Problem Solver</p>
 
-<p class="hero-bio">
-  Flutter developer with 2+ years of experience working on production apps. Skilled in code review, debugging, performance optimization, bug fixing, and adding new features to existing applications. Experienced with Firebase, APIs, sockets, maps, push notifications, and Play Store/App Store releases.
-</p>
-      <div style="margin-top:1rem;color:var(--cyan);font-size:.9rem;font-weight:500;">
-  Worked on 15+ apps · Production Experience · Play Store & App Store Releases
-</div>
-      <div class="hero-cta">
-        <a href="#contact" class="btn btn-primary">💬 Hire Me</a>
-        <a href="#projects" class="btn btn-outline">View Projects</a>
-        <a href="Rafiqul-Islam-Shaon.pdf" download class="btn btn-outline">↓ Resume</a>
-      </div>
-      <div class="hero-socials">
-        <a href="https://github.com/sh4on" target="_blank" class="social-link" title="GitHub">
-          <svg viewBox="0 0 24 24" width="18" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
-        </a>
-        <a href="https://www.linkedin.com/in/sh4on" target="_blank" class="social-link" title="LinkedIn">
-          <svg viewBox="0 0 24 24" width="18" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        </a>
-        <a href="mailto:shaonx@proton.me" class="social-link" title="Email">
-          <svg viewBox="0 0 24 24" width="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        </a>
-        <a href="https://wa.me/8801617408676" target="_blank" class="social-link" title="WhatsApp">
-          <svg viewBox="0 0 24 24" width="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        </a>
-      </div>
-    </div>
-    <div class="hero-avatar">
-      <div class="avatar-ring">
-        <div class="avatar-img">
-          <img src="Rafiqul-Islam-Shaon.png" alt="Rafiqul Islam Shaon" style="width:100%;height:100%;object-fit:cover;object-position: top;border-radius:50%;"/>
+        <p class="hero-bio">
+          Flutter developer with 2+ years of experience working on production apps. Skilled in code review, debugging,
+          performance optimization, bug fixing, and adding new features to existing applications. Experienced with
+          Firebase, APIs, sockets, maps, push notifications, and Play Store/App Store releases.
+        </p>
+        <div style="margin-top:1rem;color:var(--cyan);font-size:.9rem;font-weight:500;">
+          Worked on 15+ apps · Production Experience · Play Store & App Store Releases
+        </div>
+        <div class="hero-cta">
+          <a href="#contact" class="btn btn-primary">💬 Hire Me</a>
+          <a href="#projects" class="btn btn-outline">View Projects</a>
+          <a href="Rafiqul-Islam-Shaon.pdf" download class="btn btn-outline">↓ Resume</a>
+        </div>
+        <div class="hero-socials">
+          <a href="https://github.com/sh4on" target="_blank" class="social-link" title="GitHub">
+            <svg viewBox="0 0 24 24" width="18" fill="currentColor">
+              <path
+                d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/in/sh4on" target="_blank" class="social-link" title="LinkedIn">
+            <svg viewBox="0 0 24 24" width="18" fill="currentColor">
+              <path
+                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+            </svg>
+          </a>
+          <!-- google play developer page link -->
+          <a href="https://play.google.com/store/apps/developer?id=shaon&hl=en" target="_blank" class="social-link"
+            title="Google Play">
+            <svg viewBox="0 0 24 24" width="18" fill="currentColor">
+              <path
+                d="M3.609 1.814L13.792 12 3.61 22.186a2.372 2.372 0 01-.497-1.5V3.313c0-.564.19-1.082.496-1.5zM14.855 13.063l2.868 2.87-8.676 4.943 5.808-7.813zM18.635 8.11l3.24 1.847c.906.514.906 1.572 0 2.086l-3.24 1.847-3.158-3.89 3.158-3.89zM9.047 3.123l8.676 4.943-2.868 2.87-5.808-7.813z" />
+            </svg>
+          </a>
+          <a href="mailto:shaonx@proton.me" class="social-link" title="Email">
+            <svg viewBox="0 0 24 24" width="18" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
+          </a>
+          <a href="https://wa.me/8801617408676" target="_blank" class="social-link" title="WhatsApp">
+            <svg viewBox="0 0 24 24" width="18" fill="currentColor">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+            </svg>
+          </a>
         </div>
       </div>
-      <div class="avatar-badge">📱 Flutter Developer</div>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-header reveal">
-    <div class="section-tag">Who I am</div>
-    <h2 class="section-title">About Me</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="about-grid">
-    <div class="glass about-card reveal">
-      <div class="about-icon">🚀</div>
-      <h3>What I Do</h3>
-<p>I work on production-level Flutter apps — fixing bugs, improving performance, reviewing code, and building new features. I also develop complete apps from scratch and handle Play Store and App Store releases.</p>    </div>
-    <div class="glass about-card reveal">
-      <div class="about-icon">🧠</div>
-      <h3>How I Think</h3>
-<p>I focus on understanding the real root problem before writing code. Comfortable working with large existing codebases, debugging critical issues, and improving app stability without breaking production flow.</p>    </div>
-    <div class="glass about-card reveal">
-      <div class="about-icon">🌱</div>
-      <h3>Always Growing</h3>
-<p>Always learning new technologies and improving development workflows. Currently exploring AI-assisted development, advanced Flutter architecture, and scalable app systems.</p>    </div>
-    <div class="glass about-card reveal">
-      <div class="about-icon">🌍</div>
-      <h3>Background</h3>
-      <p>Based in Mohakhali, Dhaka, Bangladesh. Fluent in Bengali and conversational English. Open to remote work and international collaboration.</p>
-    </div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="section-header reveal">
-    <div class="section-tag">Career</div>
-    <h2 class="section-title">Work Experience</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="timeline">
-
-    <div class="timeline-item reveal">
-      <div class="timeline-dot">🏢</div>
-      <div class="glass exp-card">
-        <div class="exp-header">
-          <div class="exp-company">Sparktech Agency</div>
-          <div class="exp-date">May 2025 – Present</div>
+      <div class="hero-avatar">
+        <div class="avatar-ring">
+          <div class="avatar-img">
+            <img src="Rafiqul-Islam-Shaon.png" alt="Rafiqul Islam Shaon"
+              style="width:100%;height:100%;object-fit:cover;object-position: top;border-radius:50%;" />
+          </div>
         </div>
-        <div class="exp-role">Flutter Developer (Full-time)</div>
-<ul class="exp-bullets">
-  <li>Worked on 15+ production apps across multiple industries.</li>
-  <li>Focused on code review, debugging, performance optimization, and bug fixing.</li>
-  <li>Added and maintained features in existing applications without affecting production stability.</li>
-  <li>Integrated Firebase, REST APIs, sockets, maps, push notifications, deep linking, and in-app purchases.</li>
-  <li>Worked with audio/video calling systems and real-time communication features.</li>
-  <li>Managed Play Store and App Store releases for multiple live applications.</li>
-</ul>
+        <div class="avatar-badge">📱 Flutter Developer</div>
       </div>
     </div>
+  </section>
 
-    <div class="timeline-item reveal">
-      <div class="timeline-dot">📚</div>
-      <div class="glass exp-card">
-        <div class="exp-header">
-          <div class="exp-company">Biddabari Publications</div>
-          <div class="exp-date">June 2024 – Present</div>
-        </div>
-        <div class="exp-role">Flutter Developer (Part-time)</div>
-<ul class="exp-bullets">
-  <li>Built and maintained a large-scale government job preparation platform with 100K+ downloads.</li>
-  <li>Developed features including course streaming, exams, blogs, job circulars, and offline video downloads.</li>
-  <li>Integrated REST APIs, Firebase services, and push notifications.</li>
-  <li>Improved app performance, fixed production bugs, and maintained stable releases.</li>
-  <li>Worked closely with designers and backend developers to deliver new features quickly.</li>
-</ul>
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-header reveal">
+      <div class="section-tag">Who I am</div>
+      <h2 class="section-title">About Me</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="about-grid">
+      <div class="glass about-card reveal">
+        <div class="about-icon">🚀</div>
+        <h3>What I Do</h3>
+        <p>I work on production-level Flutter apps — fixing bugs, improving performance, reviewing code, and building
+          new features. I also develop complete apps from scratch and handle Play Store and App Store releases.</p>
+      </div>
+      <div class="glass about-card reveal">
+        <div class="about-icon">🧠</div>
+        <h3>How I Think</h3>
+        <p>I focus on understanding the real root problem before writing code. Comfortable working with large existing
+          codebases, debugging critical issues, and improving app stability without breaking production flow.</p>
+      </div>
+      <div class="glass about-card reveal">
+        <div class="about-icon">🌱</div>
+        <h3>Always Growing</h3>
+        <p>Always learning new technologies and improving development workflows. Currently exploring AI-assisted
+          development, advanced Flutter architecture, and scalable app systems.</p>
+      </div>
+      <div class="glass about-card reveal">
+        <div class="about-icon">🌍</div>
+        <h3>Background</h3>
+        <p>Based in Mohakhali, Dhaka, Bangladesh. Fluent in Bengali and conversational English. Open to remote work and
+          international collaboration.</p>
       </div>
     </div>
+  </section>
 
-  </div>
-</section>
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-header reveal">
+      <div class="section-tag">Career</div>
+      <h2 class="section-title">Work Experience</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="timeline">
 
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="section-header reveal">
-    <div class="section-tag">Portfolio</div>
-    <h2 class="section-title">Featured Projects</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="projects-grid">
-
-    <!-- Biddabari -->
-    <div class="glass proj-card reveal">
-      <div class="proj-top">
-        <div class="proj-icon">📖</div>
-        <div class="proj-links">
-          <a href="https://play.google.com/store/apps/details?id=com.nextive.biddabari2021&hl=en&pli=1" target="_blank" class="proj-link">Play Store</a>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot">🏢</div>
+        <div class="glass exp-card">
+          <div class="exp-header">
+            <div class="exp-company">Sparktech Agency</div>
+            <div class="exp-date">May 2025 – Present</div>
+          </div>
+          <div class="exp-role">Flutter Developer (Full-time)</div>
+          <ul class="exp-bullets">
+            <li>Worked on 15+ production apps across multiple industries.</li>
+            <li>Focused on code review, debugging, performance optimization, and bug fixing.</li>
+            <li>Added and maintained features in existing applications without affecting production stability.</li>
+            <li>Integrated Firebase, REST APIs, sockets, maps, push notifications, deep linking, and in-app purchases.
+            </li>
+            <li>Worked with audio/video calling systems and real-time communication features.</li>
+            <li>Managed Play Store and App Store releases for multiple live applications.</li>
+          </ul>
         </div>
       </div>
-      <div class="proj-name">Biddabari</div>
-      <div class="proj-sub">Government Job Preparation Platform</div>
-<p class="proj-desc">
-Large-scale Flutter learning platform for BCS, Bank, SI, and government job preparation. Worked on exams, PDF notes, offline videos, blogs, job circulars, API integration, and performance optimization while maintaining production releases.
-</p>      <div class="proj-tags">
-        <span class="tag">Flutter</span><span class="tag">GetX</span>
-        <span class="tag">Firebase</span><span class="tag">Offline</span>
-      </div>
-    </div>
 
-    <!-- Grupo ANF -->
-    <div class="glass proj-card reveal">
-      <div class="proj-top">
-        <div class="proj-icon">🍜</div>
-        <div class="proj-links">
-          <a href="https://play.google.com/store/apps/details?id=com.gustovatorna.grupoanf" target="_blank" class="proj-link">Play Store</a>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot">📚</div>
+        <div class="glass exp-card">
+          <div class="exp-header">
+            <div class="exp-company">Biddabari Publications</div>
+            <div class="exp-date">June 2024 – Present</div>
+          </div>
+          <div class="exp-role">Flutter Developer (Part-time)</div>
+          <ul class="exp-bullets">
+            <li>Built and maintained a large-scale government job preparation platform with 100K+ downloads.</li>
+            <li>Developed features including course streaming, exams, blogs, job circulars, and offline video downloads.
+            </li>
+            <li>Integrated REST APIs, Firebase services, and push notifications.</li>
+            <li>Improved app performance, fixed production bugs, and maintained stable releases.</li>
+            <li>Worked closely with designers and backend developers to deliver new features quickly.</li>
+          </ul>
         </div>
       </div>
-      <div class="proj-name">Grupo ANF</div>
-      <div class="proj-sub">Food Ordering App</div>
-<p class="proj-desc">
-A corporate food ordering app with separate company and employee roles. Companies can manage employee accounts and track orders, while employees can browse menus and order meals directly from the app
-</p>
-      <div class="proj-tags">
-        <span class="tag">Flutter</span><span class="tag">GetX</span>
-        <span class="tag">Firebase</span><span class="tag">REST API</span>
-      </div>
-    </div>
 
-    <!-- Servana -->
-    <div class="glass proj-card reveal">
-      <div class="proj-top">
-        <div class="proj-icon">🔧</div>
-        <div class="proj-links">
-          <a href="https://play.google.com/store/apps/details?id=com.servana.servanaapp&hl=en" target="_blank" class="proj-link">Play Store</a>
-          <a href="https://apps.apple.com/us/app/servana-connect-service/id6755667950" target="_blank" class="proj-link">App Store</a>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-header reveal">
+      <div class="section-tag">Portfolio</div>
+      <h2 class="section-title">Featured Projects</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="projects-grid">
+
+      <!-- Biddabari -->
+      <div class="glass proj-card reveal">
+        <div class="proj-top">
+          <div class="proj-icon">📖</div>
+          <div class="proj-links">
+            <a href="https://play.google.com/store/apps/details?id=com.nextive.biddabari2021&hl=en&pli=1"
+              target="_blank" class="proj-link">Play Store</a>
+          </div>
+        </div>
+        <div class="proj-name">Biddabari</div>
+        <div class="proj-sub">Government Job Preparation Platform</div>
+        <p class="proj-desc">
+          Large-scale Flutter learning platform for BCS, Bank, SI, and government job preparation. Worked on exams, PDF
+          notes, offline videos, blogs, job circulars, API integration, and performance optimization while maintaining
+          production releases.
+        </p>
+        <div class="proj-tags">
+          <span class="tag">Flutter</span><span class="tag">GetX</span>
+          <span class="tag">Firebase</span><span class="tag">Offline</span>
         </div>
       </div>
-      <div class="proj-name">Servana</div>
-      <div class="proj-sub">Service Booking App</div>
-<p class="proj-desc">
-Worked on a live service booking platform focusing on debugging, performance optimization, and feature development. Improved booking flow, real-time updates, maps integration, and overall app stability for production users.
-</p>      <div class="proj-tags">
-        <span class="tag">Flutter</span><span class="tag">Bug Fixing</span>
-        <span class="tag">Play Store</span><span class="tag">App Store</span>
-      </div>
-    </div>
 
-    <!-- ForageGuide -->
-    <div class="glass proj-card reveal">
-      <div class="proj-top">
-        <div class="proj-icon">🌿</div>
-        <div class="proj-links">
-          <a href="https://drive.google.com/drive/folders/1TcFuDIMWxYt5YnKHepi8V-lZuUHUc2Tw?usp=sharing" target="_blank" class="proj-link">APK</a>
+      <!-- Grupo ANF -->
+      <div class="glass proj-card reveal">
+        <div class="proj-top">
+          <div class="proj-icon">🍜</div>
+          <div class="proj-links">
+            <a href="https://play.google.com/store/apps/details?id=com.gustovatorna.grupoanf" target="_blank"
+              class="proj-link">Play Store</a>
+          </div>
+        </div>
+        <div class="proj-name">Grupo ANF</div>
+        <div class="proj-sub">Food Ordering App</div>
+        <p class="proj-desc">
+          A corporate food ordering app with separate company and employee roles. Companies can manage employee accounts
+          and track orders, while employees can browse menus and order meals directly from the app
+        </p>
+        <div class="proj-tags">
+          <span class="tag">Flutter</span><span class="tag">GetX</span>
+          <span class="tag">Firebase</span><span class="tag">REST API</span>
         </div>
       </div>
-      <div class="proj-name">ForageGuide</div>
-      <div class="proj-sub">Wild Plant & Mushroom Foraging App</div>
-      <p class="proj-desc">A Flutter app for wild plant and mushroom foraging. Helps users identify edible and toxic species, find what's growing nearby, and keep a personal foraging journal. Built with Flutter + free iNaturalist API. No backend, no server costs, works offline.</p>
-      <div class="proj-tags">
-        <span class="tag">Flutter</span><span class="tag">REST API</span>
-        <span class="tag">Offline</span><span class="tag">iNaturalist</span>
-      </div>
-    </div>
 
-    <!-- Device Care -->
-    <div class="glass proj-card reveal">
-      <div class="proj-top">
-        <div class="proj-icon">🔒</div>
-        <div class="proj-links">
-          <a href="https://drive.google.com/drive/folders/1HFmM6CIPgW0cCcyiQAlahzI-uvbcp7ZN?usp=sharing" target="_blank" class="proj-link">APK</a>
+      <!-- Servana -->
+      <div class="glass proj-card reveal">
+        <div class="proj-top">
+          <div class="proj-icon">🔧</div>
+          <div class="proj-links">
+            <a href="https://play.google.com/store/apps/details?id=com.servana.servanaapp&hl=en" target="_blank"
+              class="proj-link">Play Store</a>
+            <a href="https://apps.apple.com/us/app/servana-connect-service/id6755667950" target="_blank"
+              class="proj-link">App Store</a>
+          </div>
+        </div>
+        <div class="proj-name">Servana</div>
+        <div class="proj-sub">Service Booking App</div>
+        <p class="proj-desc">
+          Worked on a live service booking platform focusing on debugging, performance optimization, and feature
+          development. Improved booking flow, real-time updates, maps integration, and overall app stability for
+          production users.
+        </p>
+        <div class="proj-tags">
+          <span class="tag">Flutter</span><span class="tag">Bug Fixing</span>
+          <span class="tag">Play Store</span><span class="tag">App Store</span>
         </div>
       </div>
-      <div class="proj-name">Device Care</div>
-      <div class="proj-sub">Private Security Application</div>
-      <p class="proj-desc">A private security application built with Flutter and Android Native (Kotlin) that monitors and logs system-wide keystrokes using Android's Accessibility Service. The app runs persistently in the background — even when completely closed or after a device reboot — and automatically delivers logs to a configured Telegram bot.</p>
-      <div class="proj-tags">
-        <span class="tag">Flutter</span><span class="tag">Kotlin</span>
-        <span class="tag">Android Native</span><span class="tag">Accessibility Service</span>
+
+      <!-- ForageGuide -->
+      <div class="glass proj-card reveal">
+        <div class="proj-top">
+          <div class="proj-icon">🌿</div>
+          <div class="proj-links">
+            <a href="https://drive.google.com/drive/folders/1TcFuDIMWxYt5YnKHepi8V-lZuUHUc2Tw?usp=sharing"
+              target="_blank" class="proj-link">APK</a>
+          </div>
+        </div>
+        <div class="proj-name">ForageGuide</div>
+        <div class="proj-sub">Wild Plant & Mushroom Foraging App</div>
+        <p class="proj-desc">A Flutter app for wild plant and mushroom foraging. Helps users identify edible and toxic
+          species, find what's growing nearby, and keep a personal foraging journal. Built with Flutter + free
+          iNaturalist API. No backend, no server costs, works offline.</p>
+        <div class="proj-tags">
+          <span class="tag">Flutter</span><span class="tag">REST API</span>
+          <span class="tag">Offline</span><span class="tag">iNaturalist</span>
+        </div>
+      </div>
+
+      <!-- Device Care -->
+      <div class="glass proj-card reveal">
+        <div class="proj-top">
+          <div class="proj-icon">🔒</div>
+          <div class="proj-links">
+            <a href="https://drive.google.com/drive/folders/1HFmM6CIPgW0cCcyiQAlahzI-uvbcp7ZN?usp=sharing"
+              target="_blank" class="proj-link">APK</a>
+          </div>
+        </div>
+        <div class="proj-name">Device Care</div>
+        <div class="proj-sub">Private Security Application</div>
+        <p class="proj-desc">A private security application built with Flutter and Android Native (Kotlin) that monitors
+          and logs system-wide keystrokes using Android's Accessibility Service. The app runs persistently in the
+          background — even when completely closed or after a device reboot — and automatically delivers logs to a
+          configured Telegram bot.</p>
+        <div class="proj-tags">
+          <span class="tag">Flutter</span><span class="tag">Kotlin</span>
+          <span class="tag">Android Native</span><span class="tag">Accessibility Service</span>
+        </div>
+      </div>
+
+      <!-- Other Projects -->
+      <div class="glass proj-card reveal" style="border-style: dashed;">
+        <div class="proj-top">
+          <div class="proj-icon">➕</div>
+        </div>
+        <div class="proj-name">Other Projects</div>
+        <div class="proj-sub">13+ More Apps</div>
+        <p class="proj-desc">Rey Barber · Tradiezz · Partner · Curlu · PodLove · Grupo ANF · Impacto App · Night Out
+          Finder · Careness · Kids
+          Know Rights · Theory Panda · U-Tee Hub · Dental Desh App · Bazar 24/7</p>
+        <div class="proj-tags">
+          <span class="tag">Various Domains</span><span class="tag">Flutter</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-header reveal">
+      <div class="section-tag">Tech Stack</div>
+      <h2 class="section-title">Skills & Tools</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-wrap">
+      <div class="skill-group reveal">
+        <div class="skill-group-title">📱 Mobile Development</div>
+        <div class="skill-chips">
+          <span class="chip">Flutter</span><span class="chip">Dart</span><span class="chip">Android (Java)</span>
+          <span class="chip">Kotlin (Basic)</span><span class="chip">iOS Deployment</span><span class="chip">Play Store
+            Deployment</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-title">⚙️ State Management</div>
+        <div class="skill-chips"><span class="chip">GetX</span><span class="chip">Riverpod</span><span
+            class="chip">BLoC</span></div>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-title">🔗 Backend & APIs</div>
+        <div class="skill-chips"><span class="chip">REST API Integration</span><span class="chip">Firebase
+            Auth</span><span class="chip">Firebase Firestore</span><span class="chip">Firebase Cloud
+            Messaging</span><span class="chip">Supabase</span><span class="chip">Dio</span><span
+            class="chip">Http</span></div>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-title">🗄️ Local Storage</div>
+        <div class="skill-chips"><span class="chip">GetStorage</span><span
+            class="chip">flutter_secure_storage</span><span class="chip">shared_preferences</span><span
+            class="chip">SQLite</span><span class="chip">objectbox</span></div>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-title">📦 Libraries & Tools</div>
+        <div class="skill-chips"><span class="chip">flutter_screenutil</span><span class="chip">qr_flutter</span><span
+            class="chip">google_maps_flutter</span><span class="chip">encrypt</span><span
+            class="chip">socket_io_client</span><span class="chip">flutter_local_notifications</span><span
+            class="chip">firebase_auth</span><span class="chip">cloud_firestore</span><span
+            class="chip">firebase_messaging</span><span class="chip">firebase_storage</span><span
+            class="chip">cached_network_image</span><span class="chip">url_launcher</span><span
+            class="chip">permission_handler</span><span class="chip">Git</span><span class="chip">GitHub</span></div>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-title">🤖 AI & Productivity</div>
+
+        <div class="skill-chips">
+          <span class="chip">AI-assisted Development</span>
+          <span class="chip">Agentic AI Workflows</span>
+          <span class="chip">Prompt Engineering</span>
+          <span class="chip">Development Automation</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-title">💻 Programming Languages</div>
+        <div class="skill-chips"><span class="chip">Dart</span><span class="chip">Java</span><span class="chip">Kotlin
+            (Basic)</span><span class="chip">Python (Basic)</span><span class="chip">C</span></div>
       </div>
     </div>
+  </section>
 
-    <!-- Other Projects -->
-    <div class="glass proj-card reveal" style="border-style: dashed;">
-      <div class="proj-top">
-        <div class="proj-icon">➕</div>
+
+  <!-- NEW SECTION: BOOKS / BLOGS I READ -->
+  <section id="reading">
+    <div class="section-header reveal">
+      <div class="section-tag">Curious Mind</div>
+      <h2 class="section-title">Books & Blogs I Read</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="reading-grid">
+      <!-- C book -->
+      <div class="glass read-card reveal">
+        <div class="read-icon">📘</div>
+        <div class="read-title">সবার জন্য সি</div>
+        <div class="read-sub">by Kamruzzaman Niton</div>
+        <div class="read-desc">My foundation in C programming — a beautifully crafted Bengali book that made low-level
+          concepts feel intuitive. Helped me think like a programmer before jumping into mobile.</div>
+        <div class="read-badge"><span>💡</span> Language: C</div>
       </div>
-      <div class="proj-name">Other Projects</div>
-      <div class="proj-sub">13+ More Apps</div>
-      <p class="proj-desc">Rey Barber · Tradiezz · Partner · Curlu · PodLove · Grupo ANF · Impacto App · Night Out Finder · Careness · Kids
-Know Rights · Theory Panda · U-Tee Hub · Dental Desh App · Bazar 24/7</p>
-      <div class="proj-tags">
-        <span class="tag">Various Domains</span><span class="tag">Flutter</span>
+      <!-- Java book -->
+      <div class="glass read-card reveal">
+        <div class="read-icon">☕</div>
+        <div class="read-title">An Introduction to Java Programming Language</div>
+        <div class="read-sub">by Y. Daniel Liang</div>
+        <div class="read-desc">The best book to learn Java and OOP. This is where I cleared my OOP concepts and learned
+          Java deeply — from inheritance and polymorphism to collections and exception handling.</div>
+        <div class="read-badge"><span>📚</span> Language: Java</div>
       </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills">
-  <div class="section-header reveal">
-    <div class="section-tag">Tech Stack</div>
-    <h2 class="section-title">Skills & Tools</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="skills-wrap">
-    <div class="skill-group reveal">
-      <div class="skill-group-title">📱 Mobile Development</div>
-      <div class="skill-chips">
-        <span class="chip">Flutter</span><span class="chip">Dart</span><span class="chip">Android (Java)</span>
-        <span class="chip">Kotlin (Basic)</span><span class="chip">iOS Deployment</span><span class="chip">Play Store Deployment</span>
+      <!-- Python book (Automate the boring stuff) -->
+      <div class="glass read-card reveal">
+        <div class="read-icon">🐍</div>
+        <div class="read-title">Automate the Boring Stuff with Python</div>
+        <div class="read-sub">by Al Sweigart</div>
+        <div class="read-desc">Practical scripting for real-world automation. From web scraping to file handling — gave
+          me a productivity superpower that saves hours daily.</div>
+        <div class="read-badge"><span>⚡</span> Language: Python</div>
       </div>
-    </div>
-    <div class="skill-group reveal">
-      <div class="skill-group-title">⚙️ State Management</div>
-      <div class="skill-chips"><span class="chip">GetX</span><span class="chip">Riverpod</span><span class="chip">BLoC</span></div>
-    </div>
-    <div class="skill-group reveal">
-      <div class="skill-group-title">🔗 Backend & APIs</div>
-      <div class="skill-chips"><span class="chip">REST API Integration</span><span class="chip">Firebase Auth</span><span class="chip">Firebase Firestore</span><span class="chip">Firebase Cloud Messaging</span><span class="chip">Supabase</span><span class="chip">Dio</span><span class="chip">Http</span></div>
-    </div>
-    <div class="skill-group reveal">
-      <div class="skill-group-title">🗄️ Local Storage</div>
-      <div class="skill-chips"><span class="chip">GetStorage</span><span class="chip">flutter_secure_storage</span><span class="chip">shared_preferences</span><span class="chip">SQLite</span><span class="chip">objectbox</span></div>
-    </div>
-    <div class="skill-group reveal">
-      <div class="skill-group-title">📦 Libraries & Tools</div>
-      <div class="skill-chips"><span class="chip">flutter_screenutil</span><span class="chip">qr_flutter</span><span class="chip">google_maps_flutter</span><span class="chip">encrypt</span><span class="chip">socket_io_client</span><span class="chip">flutter_local_notifications</span><span class="chip">firebase_auth</span><span class="chip">cloud_firestore</span><span class="chip">firebase_messaging</span><span class="chip">firebase_storage</span><span class="chip">cached_network_image</span><span class="chip">url_launcher</span><span class="chip">permission_handler</span><span class="chip">Git</span><span class="chip">GitHub</span></div>
-    </div>
-    <div class="skill-group reveal">
-<div class="skill-group-title">🤖 AI & Productivity</div>
-
-<div class="skill-chips">
-  <span class="chip">AI-assisted Development</span>
-  <span class="chip">Agentic AI Workflows</span>
-  <span class="chip">Prompt Engineering</span>
-  <span class="chip">Development Automation</span>
-</div>    </div>
-    <div class="skill-group reveal">
-      <div class="skill-group-title">💻 Programming Languages</div>
-      <div class="skill-chips"><span class="chip">Dart</span><span class="chip">Java</span><span class="chip">Kotlin (Basic)</span><span class="chip">Python (Basic)</span><span class="chip">C</span></div>
-    </div>
-  </div>
-</section>
-
-
-<!-- NEW SECTION: BOOKS / BLOGS I READ -->
-<section id="reading">
-  <div class="section-header reveal">
-    <div class="section-tag">Curious Mind</div>
-    <h2 class="section-title">Books & Blogs I Read</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="reading-grid">
-    <!-- C book -->
-    <div class="glass read-card reveal">
-      <div class="read-icon">📘</div>
-      <div class="read-title">সবার জন্য সি</div>
-      <div class="read-sub">by Kamruzzaman Niton</div>
-      <div class="read-desc">My foundation in C programming — a beautifully crafted Bengali book that made low-level concepts feel intuitive. Helped me think like a programmer before jumping into mobile.</div>
-      <div class="read-badge"><span>💡</span> Language: C</div>
-    </div>
-    <!-- Java book -->
-    <div class="glass read-card reveal">
-      <div class="read-icon">☕</div>
-      <div class="read-title">An Introduction to Java Programming Language</div>
-      <div class="read-sub">by Y. Daniel Liang</div>
-      <div class="read-desc">The best book to learn Java and OOP. This is where I cleared my OOP concepts and learned Java deeply — from inheritance and polymorphism to collections and exception handling.</div>
-      <div class="read-badge"><span>📚</span> Language: Java</div>
-    </div>
-    <!-- Python book (Automate the boring stuff) -->
-    <div class="glass read-card reveal">
-      <div class="read-icon">🐍</div>
-      <div class="read-title">Automate the Boring Stuff with Python</div>
-      <div class="read-sub">by Al Sweigart</div>
-      <div class="read-desc">Practical scripting for real-world automation. From web scraping to file handling — gave me a productivity superpower that saves hours daily.</div>
-      <div class="read-badge"><span>⚡</span> Language: Python</div>
-    </div>
-    <!-- w3schools (Kotlin) -->
-    <div class="glass read-card reveal">
-      <div class="read-icon">🌐</div>
-      <div class="read-title">Kotlin Fundamentals</div>
-      <div class="read-sub">w3schools.com</div>
-      <div class="read-desc">Quick, hands-on reference for modern Android syntax. Explored null safety, coroutines basics, and concise expressions — sharpened my cross-language adaptability.</div>
-      <div class="read-badge"><span>📖</span> Resource: w3schools</div>
-    </div>
-    <!-- official dart documentation + blogs -->
-    <div class="glass read-card reveal">
-      <div class="read-icon">🎯</div>
-      <div class="read-title">Dart & Flutter Deep Dive</div>
-      <div class="read-sub">official documentation / blogs</div>
-      <div class="read-desc">Official Dart.dev language tour + community blogs. Mastered async/await, isolates, sound null safety, and advanced Flutter patterns that power production-grade apps.</div>
-      <div class="read-badge"><span>✨</span> dart.dev & community</div>
-    </div>
-    <!-- extra: bonus blog/learning mind -->
-    <div class="glass read-card reveal">
-      <div class="read-icon">🧠</div>
-      <div class="read-title">Agentic AI & Dev Workflows</div>
-      <div class="read-sub">blogs & research papers</div>
-      <div class="read-desc">Exploring how AI agents reshape development. Reading about prompt engineering, LLM-assisted debugging, and AI tooling to stay ahead in tech evolution.</div>
-      <div class="read-badge"><span>🤖</span> Emerging tech</div>
-    </div>
-  </div>
-</section>
-
-  
-<!-- HOBBIES & INTERESTS -->
-<section id="hobbies">
-  <div class="section-header reveal">
-    <div class="section-tag">Beyond Code</div>
-    <h2 class="section-title">Hobbies & Interests</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="hobbies-grid">
-    
-    <!-- Reading Articles -->
-    <div class="glass hobby-card reveal">
-      <div class="hobby-icon">📰</div>
-      <div class="hobby-title">Daily Reading</div>
-      <div class="hobby-desc">I read articles every day on Medium.com to increase my knowledge and keep myself updated with the latest in tech, productivity, and beyond.</div>
-      <div class="hobby-badge">📚 Medium · Daily</div>
-    </div>
-
-    <!-- Travelling -->
-    <div class="glass hobby-card reveal">
-      <div class="hobby-icon">✈️</div>
-      <div class="hobby-title">Travelling</div>
-      <div class="hobby-desc">Exploring new places and experiencing diverse cultures. Been to Cox's Bazar, Sylhet, Sreemangal, Sitakundu, and more.</div>
-      <div class="hobby-badge">🌍 Wanderlust</div>
-    </div>
-
-    <!-- Movies -->
-    <div class="glass hobby-card reveal">
-      <div class="hobby-icon">🎬</div>
-      <div class="hobby-title">Movies</div>
-      <div class="hobby-desc">Love watching thought-provoking cinema. Favorites: The Prestige, 2001: A Space Odyssey, Interstellar, The Dark Knight.</div>
-      <div class="hobby-badge">🍿 Cinephile</div>
-    </div>
-
-    <!-- Playing Cards -->
-    <div class="glass hobby-card reveal">
-      <div class="hobby-icon">🃏</div>
-      <div class="hobby-title">Playing Cards</div>
-      <div class="hobby-desc">Enjoy friendly card games with family and friends — a great way to relax and connect.</div>
-      <div class="hobby-badge">♠️ ♥️ ♣️ ♦️</div>
-    </div>
-
-  </div>
-</section>
-  
-<!-- EDUCATION -->
-<section id="education">
-  <div class="section-header reveal">
-    <div class="section-tag">Academic</div>
-    <h2 class="section-title">Education</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="edu-grid">
-    <div class="glass edu-card reveal">
-      <div class="edu-degree">B.Sc. Course</div>
-      <div class="edu-school">Govt. Bangabandhu College</div>
-    </div>
-    <div class="glass edu-card reveal">
-      <div class="edu-degree">HSC</div>
-      <div class="edu-school">Sabira Rouf College</div>
-    </div>
-    <div class="glass edu-card reveal">
-      <div class="edu-degree">SSC</div>
-      <div class="edu-school">Angaria High School</div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="section-header reveal">
-    <div class="section-tag">Get in Touch</div>
-    <h2 class="section-title">Contact Me</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="contact-inner">
-    <div class="glass contact-card reveal">
-      <p class="contact-intro">
-Available for freelance, remote, and full-time opportunities. Feel free to contact me for app development, debugging, performance optimization, or maintaining existing Flutter applications.
-</p>
-      <div class="contact-grid">
-        <a href="mailto:shaonx@proton.me" class="contact-item">
-          <span class="contact-icon">✉️</span>
-          <div><span class="contact-label">Email</span><span class="contact-val">shaonx@proton.me</span></div>
-        </a>
-        <a href="https://wa.me/8801617408676" target="_blank" class="contact-item">
-          <span class="contact-icon">💬</span>
-          <div><span class="contact-label">WhatsApp</span><span class="contact-val">+88 01617 408676</span></div>
-        </a>
-        <a href="https://www.linkedin.com/in/sh4on" target="_blank" class="contact-item">
-          <span class="contact-icon">🔗</span>
-          <div><span class="contact-label">LinkedIn</span><span class="contact-val">linkedin.com/in/sh4on</span></div>
-        </a>
-        <a href="https://github.com/sh4on" target="_blank" class="contact-item">
-          <span class="contact-icon">🐙</span>
-          <div><span class="contact-label">GitHub</span><span class="contact-val">github.com/sh4on</span></div>
-        </a>
+      <!-- w3schools (Kotlin) -->
+      <div class="glass read-card reveal">
+        <div class="read-icon">🌐</div>
+        <div class="read-title">Kotlin Fundamentals</div>
+        <div class="read-sub">w3schools.com</div>
+        <div class="read-desc">Quick, hands-on reference for modern Android syntax. Explored null safety, coroutines
+          basics, and concise expressions — sharpened my cross-language adaptability.</div>
+        <div class="read-badge"><span>📖</span> Resource: w3schools</div>
+      </div>
+      <!-- official dart documentation + blogs -->
+      <div class="glass read-card reveal">
+        <div class="read-icon">🎯</div>
+        <div class="read-title">Dart & Flutter Deep Dive</div>
+        <div class="read-sub">official documentation / blogs</div>
+        <div class="read-desc">Official Dart.dev language tour + community blogs. Mastered async/await, isolates, sound
+          null safety, and advanced Flutter patterns that power production-grade apps.</div>
+        <div class="read-badge"><span>✨</span> dart.dev & community</div>
+      </div>
+      <!-- extra: bonus blog/learning mind -->
+      <div class="glass read-card reveal">
+        <div class="read-icon">🧠</div>
+        <div class="read-title">Agentic AI & Dev Workflows</div>
+        <div class="read-sub">blogs & research papers</div>
+        <div class="read-desc">Exploring how AI agents reshape development. Reading about prompt engineering,
+          LLM-assisted debugging, and AI tooling to stay ahead in tech evolution.</div>
+        <div class="read-badge"><span>🤖</span> Emerging tech</div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- FOOTER -->
-<footer>
-  <p>Designed & built with ❤️ by <span>Rafiqul Islam Shaon</span> · 2026</p>
-  <p style="margin-top:.4rem; font-size:.72rem;">Flutter Developer · Dhaka, Bangladesh</p>
-</footer>
 
-<script>
-  // Hamburger
-  const ham = document.getElementById('hamburger');
-  const nav = document.getElementById('navLinks');
-  ham.addEventListener('click', () => {
-    ham.classList.toggle('open');
-    nav.classList.toggle('open');
-  });
-  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    ham.classList.remove('open'); nav.classList.remove('open');
-  }));
+  <!-- HOBBIES & INTERESTS -->
+  <section id="hobbies">
+    <div class="section-header reveal">
+      <div class="section-tag">Beyond Code</div>
+      <h2 class="section-title">Hobbies & Interests</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="hobbies-grid">
 
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-  }, { threshold: 0.1 });
-  reveals.forEach(r => obs.observe(r));
+      <!-- Reading Articles -->
+      <div class="glass hobby-card reveal">
+        <div class="hobby-icon">📰</div>
+        <div class="hobby-title">Daily Reading</div>
+        <div class="hobby-desc">I read articles every day on Medium.com to increase my knowledge and keep myself updated
+          with the latest in tech, productivity, and beyond.</div>
+        <div class="hobby-badge">📚 Medium · Daily</div>
+      </div>
 
-  // Staggered reveal for siblings
-  document.querySelectorAll('.about-grid, .projects-grid, .hobbies-grid, .reading-grid, .edu-grid, .skill-group').forEach(grid => {
-    [...grid.querySelectorAll('.reveal')].forEach((el, i) => {
-      el.style.transitionDelay = (i * 0.08) + 's';
+      <!-- Travelling -->
+      <div class="glass hobby-card reveal">
+        <div class="hobby-icon">✈️</div>
+        <div class="hobby-title">Travelling</div>
+        <div class="hobby-desc">Exploring new places and experiencing diverse cultures. Been to Cox's Bazar, Sylhet,
+          Sreemangal, Sitakundu, and more.</div>
+        <div class="hobby-badge">🌍 Wanderlust</div>
+      </div>
+
+      <!-- Movies -->
+      <div class="glass hobby-card reveal">
+        <div class="hobby-icon">🎬</div>
+        <div class="hobby-title">Movies</div>
+        <div class="hobby-desc">Love watching thought-provoking cinema. Favorites: The Prestige, 2001: A Space Odyssey,
+          Interstellar, The Dark Knight.</div>
+        <div class="hobby-badge">🍿 Cinephile</div>
+      </div>
+
+      <!-- Playing Cards -->
+      <div class="glass hobby-card reveal">
+        <div class="hobby-icon">🃏</div>
+        <div class="hobby-title">Playing Cards</div>
+        <div class="hobby-desc">Enjoy friendly card games with family and friends — a great way to relax and connect.
+        </div>
+        <div class="hobby-badge">♠️ ♥️ ♣️ ♦️</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-header reveal">
+      <div class="section-tag">Academic</div>
+      <h2 class="section-title">Education</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="edu-grid">
+      <div class="glass edu-card reveal">
+        <div class="edu-degree">B.Sc. Course</div>
+        <div class="edu-school">Govt. Bangabandhu College</div>
+      </div>
+      <div class="glass edu-card reveal">
+        <div class="edu-degree">HSC</div>
+        <div class="edu-school">Sabira Rouf College</div>
+      </div>
+      <div class="glass edu-card reveal">
+        <div class="edu-degree">SSC</div>
+        <div class="edu-school">Angaria High School</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-header reveal">
+      <div class="section-tag">Get in Touch</div>
+      <h2 class="section-title">Contact Me</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="contact-inner">
+      <div class="glass contact-card reveal">
+        <p class="contact-intro">
+          Available for freelance, remote, and full-time opportunities. Feel free to contact me for app development,
+          debugging, performance optimization, or maintaining existing Flutter applications.
+        </p>
+        <div class="contact-grid">
+          <a href="mailto:shaonx@proton.me" class="contact-item">
+            <span class="contact-icon">✉️</span>
+            <div><span class="contact-label">Email</span><span class="contact-val">shaonx@proton.me</span></div>
+          </a>
+          <a href="https://wa.me/8801617408676" target="_blank" class="contact-item">
+            <span class="contact-icon">💬</span>
+            <div><span class="contact-label">WhatsApp</span><span class="contact-val">+88 01617 408676</span></div>
+          </a>
+          <a href="https://www.linkedin.com/in/sh4on" target="_blank" class="contact-item">
+            <span class="contact-icon">🔗</span>
+            <div><span class="contact-label">LinkedIn</span><span class="contact-val">linkedin.com/in/sh4on</span></div>
+          </a>
+          <a href="https://github.com/sh4on" target="_blank" class="contact-item">
+            <span class="contact-icon">🐙</span>
+            <div><span class="contact-label">GitHub</span><span class="contact-val">github.com/sh4on</span></div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Designed & built with ❤️ by <span>Rafiqul Islam Shaon</span> · 2026</p>
+    <p style="margin-top:.4rem; font-size:.72rem;">Flutter Developer · Dhaka, Bangladesh</p>
+  </footer>
+
+  <script>
+    // Hamburger
+    const ham = document.getElementById('hamburger');
+    const nav = document.getElementById('navLinks');
+    ham.addEventListener('click', () => {
+      ham.classList.toggle('open');
+      nav.classList.toggle('open');
     });
-  });
-</script>
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      ham.classList.remove('open'); nav.classList.remove('open');
+    }));
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    reveals.forEach(r => obs.observe(r));
+
+    // Staggered reveal for siblings
+    document.querySelectorAll('.about-grid, .projects-grid, .hobbies-grid, .reading-grid, .edu-grid, .skill-group').forEach(grid => {
+      [...grid.querySelectorAll('.reveal')].forEach((el, i) => {
+        el.style.transitionDelay = (i * 0.08) + 's';
+      });
+    });
+  </script>
 </body>
+
 </html>
